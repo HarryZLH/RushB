@@ -1378,3 +1378,20 @@ body.account-mode #app {
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
+
+/* Static interface labels should not enter a text selection; editable fields stay selectable. */
+body,
+body * {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+body input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+body textarea,
+body [contenteditable="true"],
+body [contenteditable="true"] *,
+body [contenteditable="plaintext-only"],
+body [contenteditable="plaintext-only"] * {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+}
