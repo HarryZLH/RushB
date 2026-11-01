@@ -1,0 +1,1380 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #17191d;
+  color: #e7e9ed;
+  font-family: "Microsoft YaHei UI", "Microsoft YaHei", "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  position: absolute !important;
+  inset: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#batch-shell {
+  display: none;
+}
+
+#batch-shell.is-ready {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  display: flex;
+  flex-direction: column;
+  min-width: 1030px;
+  min-height: 730px;
+  background: #17191d;
+  visibility: visible;
+}
+
+.app-header {
+  height: 48px;
+  flex: 0 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+  border-bottom: 1px solid #2b2f36;
+  background: #202329;
+  -webkit-app-region: drag;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #e5e8ed;
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: .2px;
+}
+
+.brand-mark {
+  width: 23px;
+  height: 23px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: #fb7299;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.window-actions {
+  height: 100%;
+  display: flex;
+  -webkit-app-region: no-drag;
+}
+
+.window-actions button {
+  width: 44px;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: #9aa1ac;
+  font: 16px/1 "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+
+.window-actions #settings-button {
+  font-size: 17px;
+}
+
+.window-actions button:hover {
+  background: #2b2f37;
+  color: #f0f2f5;
+}
+
+.window-actions #close-window:hover {
+  background: #e81123;
+  color: #fff;
+}
+
+.workbench {
+  width: min(630px, calc(100% - 64px));
+  margin: auto;
+  padding: 6px 0 34px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #9299a4;
+  font-size: 12px;
+  letter-spacing: .5px;
+}
+
+.workbench h1 {
+  margin: 0;
+  color: #edf0f4;
+  font-size: 27px;
+  font-weight: 650;
+  letter-spacing: -.4px;
+}
+
+.intro {
+  margin: 9px 0 25px;
+  color: #9aa2ad;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.input-card {
+  overflow: hidden;
+  border: 1px solid #373c45;
+  border-radius: 10px;
+  background: #202329;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .16);
+}
+
+#batch-links {
+  width: 100%;
+  height: 210px;
+  display: block;
+  resize: vertical;
+  min-height: 150px;
+  max-height: 310px;
+  padding: 17px 18px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #e8ebf0;
+  font: 13px/1.8 "Consolas", "Microsoft YaHei UI", sans-serif;
+}
+
+#batch-links::placeholder {
+  color: #818995;
+}
+
+.input-meta {
+  min-height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  border-top: 1px solid #343942;
+  color: #9299a4;
+  font-size: 11px;
+}
+
+#link-count {
+  color: #c0c5cd;
+  font-variant-numeric: tabular-nums;
+}
+
+.save-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 19px 0 0;
+  padding: 0 2px;
+  color: #9aa2ad;
+  font-size: 12px;
+}
+
+.save-label {
+  flex: 0 0 auto;
+}
+
+#save-path {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  color: #d0d4db;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-button {
+  flex: 0 0 auto;
+  padding: 5px 8px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #e85e88;
+  font: inherit;
+  cursor: pointer;
+}
+
+.text-button:hover {
+  background: #38252d;
+}
+
+.quality-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 17px 0 20px;
+  color: #a8b0ba;
+  font-size: 12px;
+}
+
+.check-mark {
+  width: 17px;
+  height: 17px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #18392a;
+  color: #70d49b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+#start-download {
+  width: 100%;
+  height: 44px;
+  border: 0;
+  border-radius: 7px;
+  background: #fb7299;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background .15s ease, transform .15s ease;
+}
+
+#start-download:hover:not(:disabled) {
+  background: #f45f8b;
+}
+
+#start-download:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+#start-download:disabled {
+  cursor: wait;
+  opacity: .72;
+}
+
+.is-busy::before {
+  content: "";
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  margin-right: 9px;
+  vertical-align: -2px;
+  border: 2px solid rgba(255, 255, 255, .45);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+#batch-status {
+  min-height: 22px;
+  margin-top: 14px;
+  color: #929aa5;
+  font-size: 11px;
+  text-align: center;
+}
+
+#batch-status[data-kind="success"] {
+  color: #70d49b;
+}
+
+#batch-status[data-kind="warning"] {
+  color: #e0bd69;
+}
+
+#batch-status[data-kind="error"] {
+  color: #ff8394;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 7px;
+}
+
+.footer button {
+  padding: 5px 8px;
+  border: 0;
+  background: transparent;
+  color: #8e96a1;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.footer button:hover {
+  color: #d0d5dc;
+}
+
+.account-note {
+  margin: -11px 0 16px 25px;
+  color: #7f8792;
+  font-size: 11px;
+}
+
+.window-actions #download-status-button {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  display: grid;
+  place-items: center;
+  margin: 0 7px 0 0;
+  padding: 0;
+  border: 1px solid #3b414b;
+  border-radius: 50%;
+  background: #292d35;
+  color: #b4bbc5;
+  font: 15px/1 "Segoe UI", sans-serif;
+  cursor: help;
+  -webkit-app-region: no-drag;
+  transition: border-color .15s ease, background .15s ease, color .15s ease;
+}
+
+.window-actions #download-status-button:hover {
+  border-color: #525b68;
+  background: #30353e;
+  color: #f0f2f5;
+}
+
+.download-status-arrow {
+  transform: translateY(-1px);
+}
+
+.download-status-dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid #202329;
+  border-radius: 50%;
+  background: #77808d;
+}
+
+#download-status-button[data-state="processing"] .download-status-dot {
+  background: #63a8f5;
+}
+
+#download-status-button[data-state="active"] .download-status-dot {
+  background: #fb7299;
+  animation: status-pulse 1.2s ease-in-out infinite;
+}
+
+#download-status-button[data-state="queued"] .download-status-dot {
+  background: #9b91f4;
+}
+
+#download-status-button[data-state="paused"] .download-status-dot {
+  background: #e0b857;
+}
+
+#download-status-button[data-state="complete"] .download-status-dot {
+  background: #70d49b;
+}
+
+#download-status-button[data-state="error"] .download-status-dot {
+  background: #ff7786;
+}
+
+@keyframes status-pulse {
+  50% { box-shadow: 0 0 0 3px rgba(251, 114, 153, .16); }
+}
+
+.settings-view {
+  width: min(610px, calc(100% - 64px));
+  max-height: calc(100% - 64px);
+  margin: auto;
+  padding: 2px 0 24px;
+  overflow: auto;
+  scrollbar-color: #454b56 transparent;
+}
+
+.series-picker[hidden] {
+  display: none !important;
+}
+
+.series-picker {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: rgba(7, 8, 11, .74);
+  -webkit-app-region: no-drag;
+}
+
+.series-dialog {
+  width: min(610px, 100%);
+  max-height: min(690px, 100%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #3a404a;
+  border-radius: 12px;
+  background: #202329;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .48);
+}
+
+.series-dialog-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 21px 22px 15px;
+}
+
+.series-dialog-heading .eyebrow {
+  margin-bottom: 7px;
+  color: #fb91ae;
+}
+
+.series-dialog-heading h2 {
+  margin: 0;
+  color: #edf0f4;
+  font-size: 19px;
+  font-weight: 650;
+}
+
+.series-subtitle {
+  max-width: 440px;
+  margin: 8px 0 0;
+  overflow: hidden;
+  color: #a0a7b1;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.series-count {
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  border: 1px solid #3a404a;
+  border-radius: 20px;
+  color: #9da5b0;
+  font-size: 11px;
+}
+
+.series-count strong {
+  color: #fb91ae;
+  font-size: 12px;
+}
+
+.series-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 22px 10px;
+}
+
+.series-toolbar .text-button,
+.series-dialog-footer .text-button {
+  padding: 5px 0;
+  color: #b8bec8;
+  font-size: 11px;
+}
+
+.series-episode-list {
+  max-height: 410px;
+  min-height: 140px;
+  overflow: auto;
+  padding: 3px 13px 10px 22px;
+  scrollbar-color: #4a505b transparent;
+}
+
+.series-episode {
+  min-height: 42px;
+  display: grid;
+  grid-template-columns: 17px 72px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.series-episode:hover {
+  background: #2a2e36;
+}
+
+.series-episode input {
+  margin: 0;
+  accent-color: #fb7299;
+}
+
+.series-episode-number {
+  color: #a8afb9;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.series-episode-title {
+  overflow: hidden;
+  color: #e0e3e8;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.series-dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 22px 17px;
+  border-top: 1px solid #343942;
+}
+
+.series-dialog-actions {
+  display: flex;
+  gap: 9px;
+}
+
+.series-secondary,
+.series-primary {
+  min-width: 82px;
+  height: 34px;
+  padding: 0 13px;
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.series-secondary {
+  border: 1px solid #454b56;
+  background: #292d35;
+  color: #d1d5dc;
+}
+
+.series-primary {
+  border: 0;
+  background: #fb7299;
+  color: #fff;
+  font-weight: 650;
+}
+
+.series-primary:disabled {
+  background: #744452;
+  color: #c8aeb6;
+  cursor: not-allowed;
+}
+
+.settings-view[hidden] {
+  display: none !important;
+}
+
+.settings-view > h1 {
+  margin: 0 0 20px;
+  color: #edf0f4;
+  font-size: 25px;
+  font-weight: 650;
+}
+
+.back-button {
+  margin: 0 0 18px -8px;
+  padding: 7px 8px;
+}
+
+.settings-card {
+  margin: 0 0 12px;
+  padding: 16px 17px;
+  border: 1px solid #373c45;
+  border-radius: 9px;
+  background: #202329;
+}
+
+.account-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #e7e9ed;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-pill {
+  padding: 4px 8px;
+  border-radius: 12px;
+  background: #343840;
+  color: #bdc3cc;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.status-pill[data-kind="success"] {
+  background: #18392a;
+  color: #70d49b;
+}
+
+.status-pill[data-kind="warning"] {
+  background: #3c3220;
+  color: #e0bd69;
+}
+
+.account-identity {
+  margin-top: 13px;
+  color: #d3d7de;
+  font-size: 13px;
+}
+
+.settings-hint,
+.method-panel p {
+  margin: 9px 0 0;
+  color: #929aa5;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.settings-value {
+  color: #aeb5bf;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.settings-save-row {
+  margin-top: 13px;
+  padding: 0;
+}
+
+.section-title {
+  margin: 22px 0 10px;
+  color: #e4e7ec;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.login-settings-group > .login-group-title {
+  margin: 0 0 10px;
+}
+
+.login-settings-group > .account-card {
+  margin-bottom: 0;
+}
+
+.login-settings-group > .login-method-title {
+  margin: 18px 0 10px;
+}
+
+.login-settings-group > .method-panel:not([hidden]) {
+  margin-bottom: 0;
+}
+
+.download-settings {
+  margin-top: 12px;
+}
+
+.login-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 11px;
+}
+
+.method-card {
+  min-height: 65px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px;
+  border: 1px solid #373c45;
+  border-radius: 8px;
+  background: #202329;
+  cursor: pointer;
+}
+
+.method-card:has(input:checked) {
+  border-color: #b95a77;
+  background: #292329;
+}
+
+.method-card input {
+  margin: 3px 0 0;
+  accent-color: #fb7299;
+}
+
+.method-card strong,
+.method-card small {
+  display: block;
+}
+
+.method-card strong {
+  color: #e5e8ed;
+  font-size: 12px;
+}
+
+.method-card small {
+  margin-top: 5px;
+  color: #929aa5;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.method-panel[hidden] {
+  display: none !important;
+}
+
+.method-panel {
+  padding-top: 13px;
+}
+
+.method-panel p:first-child {
+  margin-top: 0;
+}
+
+.settings-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 13px;
+}
+
+.settings-primary {
+  min-height: 36px;
+  padding: 0 13px;
+  border: 0;
+  border-radius: 6px;
+  background: #fb7299;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.settings-primary:hover {
+  background: #f45f8b;
+}
+
+.method-status {
+  min-height: 17px;
+  margin-top: 11px;
+  color: #a8b0ba;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+body.account-mode {
+  overflow: auto;
+  background: #fff;
+}
+
+body.account-mode #app {
+  visibility: visible !important;
+  pointer-events: auto !important;
+  overflow: auto;
+}
+
+#return-to-rushb:not([hidden]) {
+  position: fixed;
+  z-index: 2147483600;
+  top: 12px;
+  right: 18px;
+  padding: 8px 12px;
+  border: 1px solid #3c414b;
+  border-radius: 7px;
+  background: #202329;
+  color: #eef0f4;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#return-to-rushb:hover {
+  border-color: #fb7299;
+}
+
+/* Fluent dark tinted surfaces; the Windows DWM backdrop supplies desktop blur. */
+:root {
+  color-scheme: dark;
+  --fluent-accent: #60a5fa;
+  --fluent-accent-hover: #79b4ff;
+  --fluent-text: #f1f5fb;
+  --fluent-text-secondary: #b5bfce;
+  --fluent-text-muted: #8d99aa;
+  --fluent-stroke: rgba(230, 238, 249, .12);
+  --fluent-stroke-strong: rgba(230, 238, 249, .2);
+  --fluent-surface: rgba(25, 32, 43, .86);
+  --fluent-surface-raised: rgba(33, 41, 54, .91);
+  --fluent-surface-inset: rgba(9, 14, 22, .78);
+}
+
+html,
+body {
+  background: transparent !important;
+  color: var(--fluent-text);
+  color-scheme: dark;
+}
+
+#batch-shell.is-ready {
+  overflow: hidden;
+  border: 1px solid rgba(229, 237, 248, .13);
+  border-radius: 14px;
+  background:
+    radial-gradient(80% 75% at 4% 4%, rgba(75, 128, 195, .14), transparent 68%),
+    radial-gradient(75% 80% at 100% 100%, rgba(120, 79, 158, .10), transparent 68%),
+    rgba(10, 15, 23, .82);
+  -webkit-backdrop-filter: blur(30px) saturate(145%);
+  backdrop-filter: blur(30px) saturate(145%);
+}
+
+.app-header {
+  background: rgba(14, 20, 30, .80);
+  border-bottom-color: var(--fluent-stroke);
+  -webkit-backdrop-filter: blur(28px) saturate(145%);
+  backdrop-filter: blur(28px) saturate(145%);
+}
+
+.brand,
+.workbench h1,
+.settings-view > h1,
+.series-dialog-heading h2 {
+  color: var(--fluent-text);
+}
+
+.brand-mark {
+  background: linear-gradient(145deg, #77b6ff, #397ed1);
+  box-shadow: 0 3px 12px rgba(55, 128, 213, .35);
+}
+
+.window-actions button {
+  color: var(--fluent-text-secondary);
+}
+
+.window-actions button:hover {
+  background: rgba(234, 242, 253, .1);
+  color: #fff;
+}
+
+.window-actions #close-window:hover {
+  background: #c42b1c;
+  color: #fff;
+}
+
+.eyebrow {
+  color: #9db2cb;
+}
+
+.intro,
+.save-row,
+.quality-note,
+.account-note,
+.section-title,
+.settings-hint,
+.method-panel p,
+.method-status {
+  color: var(--fluent-text-secondary);
+}
+
+.input-card,
+.settings-card,
+.method-card {
+  border-color: var(--fluent-stroke);
+  background: var(--fluent-surface);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .18), inset 0 1px rgba(255, 255, 255, .035);
+  -webkit-backdrop-filter: blur(26px) saturate(145%);
+  backdrop-filter: blur(26px) saturate(145%);
+}
+
+.input-card {
+  border-radius: 12px;
+}
+
+#batch-links {
+  color: #f1f5fb;
+  caret-color: var(--fluent-accent);
+}
+
+#batch-links::placeholder {
+  color: #9ba8b9;
+}
+
+#batch-links:focus-visible {
+  outline: 2px solid rgba(96, 165, 250, .8);
+  outline-offset: -3px;
+}
+
+.input-meta {
+  border-top-color: var(--fluent-stroke);
+  color: var(--fluent-text-muted);
+}
+
+#link-count,
+#save-path,
+.account-identity,
+.account-heading,
+.section-title,
+.settings-card,
+.method-card strong {
+  color: var(--fluent-text);
+}
+
+.text-button {
+  color: #8fc2ff;
+}
+
+.text-button:hover {
+  background: rgba(96, 165, 250, .12);
+  color: #c4e0ff;
+}
+
+.check-mark {
+  background: rgba(81, 172, 126, .18);
+  color: #8dd6ac;
+}
+
+#start-download,
+.settings-primary,
+.series-primary {
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 7px;
+  background: linear-gradient(180deg, #6caeff, #3985df);
+  color: #071321;
+  box-shadow: 0 5px 18px rgba(42, 116, 203, .24), inset 0 1px rgba(255, 255, 255, .32);
+}
+
+#start-download:hover:not(:disabled),
+.settings-primary:hover,
+.series-primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #8bc0ff, #5599ed);
+}
+
+#start-download:active:not(:disabled),
+.settings-primary:active,
+.series-primary:active:not(:disabled) {
+  transform: translateY(1px);
+  filter: brightness(.95);
+}
+
+#batch-status {
+  color: var(--fluent-text-secondary);
+}
+
+.footer button {
+  color: var(--fluent-text-muted);
+}
+
+.footer button:hover {
+  color: var(--fluent-text);
+}
+
+.window-actions #download-status-button {
+  border-color: var(--fluent-stroke-strong);
+  background: rgba(232, 241, 255, .08);
+  color: #d7e8ff;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.download-status-dot {
+  border-color: rgba(20, 27, 37, .85);
+}
+
+.settings-card,
+.method-card {
+  border-radius: 11px;
+}
+
+.about-card {
+  margin-bottom: 4px;
+}
+
+.about-credit {
+  margin: 11px 0 0;
+  color: var(--fluent-text-secondary);
+  font-size: 11px;
+  line-height: 1.75;
+}
+
+.about-credit strong {
+  color: #dcecff;
+  font-weight: 600;
+}
+
+.method-card:hover {
+  border-color: var(--fluent-stroke-strong);
+  background: rgba(45, 58, 75, .62);
+}
+
+.method-card:has(input:checked) {
+  border-color: rgba(96, 165, 250, .58);
+  background: rgba(43, 77, 114, .48);
+}
+
+.method-card input,
+.series-episode input {
+  accent-color: var(--fluent-accent);
+}
+
+.method-card small,
+.settings-value,
+.account-identity {
+  color: var(--fluent-text-secondary);
+}
+
+.status-pill {
+  background: rgba(230, 238, 249, .1);
+}
+
+.series-picker {
+  background: rgba(4, 8, 14, .58);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  backdrop-filter: blur(16px) saturate(120%);
+}
+
+.series-dialog {
+  border-color: var(--fluent-stroke-strong);
+  border-radius: 14px;
+  background: rgba(24, 32, 44, .84);
+  box-shadow: 0 25px 75px rgba(0, 0, 0, .48), inset 0 1px rgba(255, 255, 255, .07);
+  -webkit-backdrop-filter: blur(34px) saturate(155%);
+  backdrop-filter: blur(34px) saturate(155%);
+}
+
+.series-dialog-heading .eyebrow {
+  color: #8fc2ff;
+}
+
+.series-subtitle,
+.series-count,
+.series-episode-number {
+  color: var(--fluent-text-secondary);
+}
+
+.series-count {
+  border-color: var(--fluent-stroke);
+  background: rgba(236, 244, 255, .06);
+}
+
+.series-count strong {
+  color: #9bcaff;
+}
+
+.series-episode:hover {
+  background: rgba(233, 242, 255, .08);
+}
+
+.series-episode-title {
+  color: #edf3fb;
+}
+
+.series-dialog-footer {
+  border-top-color: var(--fluent-stroke);
+}
+
+.series-secondary {
+  border-color: var(--fluent-stroke-strong);
+  background: rgba(231, 240, 253, .08);
+  color: var(--fluent-text);
+}
+
+.series-secondary:hover {
+  background: rgba(231, 240, 253, .14);
+}
+
+.series-primary:disabled {
+  border-color: transparent;
+  background: rgba(231, 240, 253, .12);
+  color: var(--fluent-text-muted);
+  box-shadow: none;
+}
+
+button,
+input,
+textarea {
+  font-family: "Segoe UI Variable Text", "Microsoft YaHei UI", "Segoe UI", sans-serif;
+}
+
+button:focus-visible,
+.method-card:focus-within {
+  outline: 2px solid rgba(125, 187, 255, .92);
+  outline-offset: 2px;
+}
+
+body.account-mode {
+  background: transparent !important;
+}
+
+body.account-mode #app {
+  background: rgba(12, 17, 25, .78);
+  color: var(--fluent-text);
+  -webkit-backdrop-filter: blur(30px) saturate(145%);
+  backdrop-filter: blur(30px) saturate(145%);
+}
+
+#return-to-rushb:not([hidden]) {
+  border-color: var(--fluent-stroke-strong);
+  background: rgba(25, 33, 45, .82);
+  color: var(--fluent-text);
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
+  backdrop-filter: blur(22px) saturate(145%);
+}
+
+#return-to-rushb:hover {
+  border-color: rgba(96, 165, 250, .75);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+.window-actions #download-status-button {
+  cursor: pointer;
+}
+
+.download-panel[hidden],
+.download-list[hidden] {
+  display: none !important;
+}
+
+.download-panel {
+  position: absolute;
+  z-index: 2147483100;
+  top: 56px;
+  right: 12px;
+  width: min(390px, calc(100% - 24px));
+  max-height: min(590px, calc(100% - 70px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--fluent-stroke-strong);
+  border-radius: 14px;
+  background: rgba(18, 25, 35, .94);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, .42), inset 0 1px rgba(255, 255, 255, .06);
+  -webkit-backdrop-filter: blur(36px) saturate(150%);
+  backdrop-filter: blur(36px) saturate(150%);
+  -webkit-app-region: no-drag;
+}
+
+.download-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 17px 17px 13px;
+}
+
+.download-panel-header h2 {
+  margin: 0;
+  color: var(--fluent-text);
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.download-panel-header p {
+  margin: 5px 0 0;
+  color: var(--fluent-text-secondary);
+  font-size: 11px;
+}
+
+.download-panel-close {
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+  border: 1px solid var(--fluent-stroke);
+  border-radius: 7px;
+  background: rgba(232, 241, 255, .06);
+  color: var(--fluent-text-secondary);
+  font: 18px/1 "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+
+.download-panel-close:hover {
+  background: rgba(232, 241, 255, .13);
+  color: var(--fluent-text);
+}
+
+.download-tabs {
+  display: flex;
+  gap: 5px;
+  padding: 0 13px 10px;
+  border-bottom: 1px solid var(--fluent-stroke);
+}
+
+.download-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--fluent-text-secondary);
+  font: 12px "Segoe UI Variable Text", "Microsoft YaHei UI", sans-serif;
+  cursor: pointer;
+}
+
+.download-tab span {
+  min-width: 19px;
+  padding: 2px 5px;
+  border-radius: 10px;
+  background: rgba(231, 240, 253, .08);
+  color: var(--fluent-text-muted);
+  font-size: 10px;
+  text-align: center;
+}
+
+.download-tab.is-selected {
+  border-color: rgba(96, 165, 250, .33);
+  background: rgba(66, 126, 193, .2);
+  color: #dcebff;
+}
+
+.download-tab.is-selected span {
+  background: rgba(96, 165, 250, .2);
+  color: #b9d9ff;
+}
+
+.download-list {
+  min-height: 170px;
+  overflow: auto;
+  padding: 10px 12px 13px;
+  scrollbar-color: rgba(190, 205, 224, .28) transparent;
+  scrollbar-width: thin;
+}
+
+.download-list-empty {
+  min-height: 140px;
+  display: grid;
+  place-items: center;
+  padding: 20px 25px;
+  color: var(--fluent-text-muted);
+  font-size: 12px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.download-row {
+  padding: 12px 11px;
+  border: 1px solid rgba(230, 238, 249, .1);
+  border-radius: 10px;
+  background: rgba(231, 240, 253, .045);
+}
+
+.download-row + .download-row {
+  margin-top: 8px;
+}
+
+.download-row-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.download-row-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--fluent-text);
+  font-size: 12px;
+  font-weight: 550;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.download-row-trailing {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 9px;
+}
+
+.download-row-state {
+  flex: 0 0 auto;
+  color: var(--fluent-text-muted);
+  font-size: 10px;
+}
+
+.download-row-state.is-active { color: #83bcff; }
+.download-row-state.is-paused { color: #e5c26e; }
+.download-row-state.is-error,
+.download-row-error { color: #ff8794; }
+.download-row-state.is-complete { color: #7bd4a1; }
+
+.download-row-folder {
+  width: 27px;
+  height: 27px;
+  display: grid;
+  flex: 0 0 27px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--fluent-stroke);
+  border-radius: 7px;
+  background: rgba(231, 240, 253, .055);
+  color: var(--fluent-text-secondary);
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.download-row-folder svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.35;
+}
+
+.download-row-folder:hover {
+  border-color: rgba(131, 188, 255, .55);
+  background: rgba(96, 165, 250, .16);
+  color: #c6e1ff;
+}
+
+.download-row-folder:focus-visible {
+  outline: 2px solid #83bcff;
+  outline-offset: 2px;
+}
+
+.download-row-subtitle {
+  margin: 4px 0 0;
+  color: var(--fluent-text-muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.download-progress-track {
+  height: 4px;
+  overflow: hidden;
+  margin-top: 10px;
+  border-radius: 4px;
+  background: rgba(233, 242, 255, .11);
+}
+
+.download-progress-track span {
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #4598f2, #8cc6ff);
+  transition: width .3s ease;
+}
+
+.download-progress-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+  color: var(--fluent-text-muted);
+  font-size: 10px;
+}
+
+.download-row-error {
+  margin: 7px 0 0;
+  font-size: 10px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}

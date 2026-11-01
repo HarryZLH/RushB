@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "RushB 浏览器登录桥接",
+  "version": "1.0.0",
+  "description": "将用户主动选择的 B 站登录状态发送到本机 RushB。",
+  "permissions": ["cookies"],
+  "host_permissions": [
+    "https://bilibili.com/*",
+    "https://*.bilibili.com/*",
+    "http://127.0.0.1/*"
+  ],
+  "background": {
+    "service_worker": "worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://127.0.0.1/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
