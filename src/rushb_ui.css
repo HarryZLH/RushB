@@ -1318,9 +1318,52 @@ body.account-mode #app {
 
 .download-tabs {
   display: flex;
+  align-items: center;
   gap: 5px;
   padding: 0 13px 10px;
   border-bottom: 1px solid var(--fluent-stroke);
+}
+
+.download-clear-records[hidden] {
+  display: none !important;
+}
+
+.download-clear-records {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  padding: 4px 8px;
+  border: 1px solid var(--fluent-stroke);
+  border-radius: 7px;
+  background: rgba(232, 241, 255, .05);
+  color: var(--fluent-text-muted);
+  font-size: 10px;
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease, color .15s ease;
+}
+
+.download-clear-records svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.35;
+}
+
+.download-clear-records:hover:not(:disabled) {
+  border-color: rgba(244, 115, 130, .45);
+  background: rgba(244, 115, 130, .12);
+  color: #ffabb5;
+}
+
+.download-clear-records:disabled {
+  opacity: .42;
+  cursor: default;
 }
 
 .download-tab {
