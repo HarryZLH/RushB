@@ -81,9 +81,9 @@ body {
 }
 
 .brand-mark svg path {
-  fill: #fff;
-  stroke: #fff;
-  stroke-width: .35px;
+  fill: #ffe077;
+  stroke: #fff5c7;
+  stroke-width: .4px;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
