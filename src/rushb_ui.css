@@ -1850,11 +1850,30 @@ button:focus-visible,
   margin-right: auto;
 }
 
-.settings-view > .back-button {
+.settings-view > .settings-intro {
+  margin-bottom: 22px;
+}
+
+.settings-intro > .back-button {
+  display: inline-flex;
+  align-items: center;
   width: fit-content;
-  margin: 0 0 18px max(32px, calc((100% - 610px) / 2));
-  padding: 6px 10px;
-  text-align: left;
+  min-height: 32px;
+  margin: 0 0 17px -8px;
+  padding: 5px 8px;
+  border-radius: 999px;
+}
+
+.settings-intro > .eyebrow {
+  margin: 0 0 7px;
+}
+
+.settings-intro > h1 {
+  margin: 0;
+  color: var(--fluent-text);
+  font-size: 25px;
+  font-weight: 650;
+  line-height: 1.25;
 }
 
 .settings-view::-webkit-scrollbar {
