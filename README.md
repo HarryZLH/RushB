@@ -10,6 +10,7 @@ RushB（B站视频下载器） is a compact Windows desktop interface for batch 
 - Automatically select the highest available video and audio quality.
 - Set a destination folder and inspect the current account status.
 - Click the compact circular title-bar button to see active, queued, paused, and failed tasks with progress and speed, or switch to the downloaded-records tab. Each downloaded record has a folder button that opens its saved download directory.
+- Open the download folder from the title-bar download panel. Set the save path and view the highest available quality in Settings.
 - Import Bilibili login cookies from the default Edge or Chrome profile with the included browser extension, or use the built-in QR login page.
 - Open **Settings → Software statement** for source attribution, content-use rules, local login-data handling, and the disclaimer.
 - Dark by default, with higher-opacity Fluent surfaces over real Windows Desktop Acrylic. On Windows build 22621+, the app calls the documented `DwmSetWindowAttribute` API with `DWMWA_SYSTEMBACKDROP_TYPE=DWMSBT_TRANSIENTWINDOW` for the whole window. The bundled Electron 13.6.9 runtime does not expose Electron's newer `backgroundMaterial` method, so RushB passes its native window handle to the Windows helper. The helper logs results to the program folder's `backdrop.log`, falling back to `%LOCALAPPDATA%\RushB\logs\backdrop.log`.
