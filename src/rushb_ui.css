@@ -1882,6 +1882,143 @@ button:focus-visible,
   line-height: 1.25;
 }
 
+.keyboard-section-title {
+  margin-top: 24px;
+}
+
+.keyboard-settings {
+  padding-top: 16px;
+}
+
+.shortcut-preset-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.shortcut-option {
+  min-height: 64px;
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 12px;
+  border: 1px solid var(--fluent-stroke);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .025);
+  cursor: pointer;
+  transition: border-color .16s ease, background .16s ease;
+}
+
+.shortcut-option:has(input:checked) {
+  border-color: rgba(251, 114, 153, .55);
+  background: rgba(251, 114, 153, .075);
+}
+
+.shortcut-option input,
+.shortcut-toggle input {
+  flex: 0 0 auto;
+  margin: 3px 0 0;
+  accent-color: var(--fluent-accent);
+}
+
+.shortcut-option span,
+.shortcut-copy,
+.custom-shortcut-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.shortcut-option strong,
+.shortcut-copy strong,
+.custom-shortcut-copy strong {
+  color: var(--fluent-text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.shortcut-option small,
+.shortcut-copy small,
+.custom-shortcut-copy small {
+  color: var(--fluent-text-secondary);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.shortcut-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 12px 1px 0;
+  border-top: 1px solid var(--fluent-stroke);
+  cursor: pointer;
+}
+
+.shortcut-copy {
+  flex: 1 1 auto;
+}
+
+.shortcut-toggle kbd,
+.shortcut-reference kbd,
+.custom-shortcut-copy small {
+  padding: 4px 7px;
+  border: 1px solid var(--fluent-stroke);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .035);
+  color: var(--fluent-text-secondary);
+  font: 10px/1.35 "Segoe UI", sans-serif;
+  white-space: nowrap;
+}
+
+.custom-shortcut-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 13px;
+  padding-top: 12px;
+  border-top: 1px solid var(--fluent-stroke);
+}
+
+.custom-shortcut-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 0 0 auto;
+}
+
+.custom-shortcut-actions button {
+  min-height: 30px;
+}
+
+.custom-shortcut-actions button:disabled {
+  opacity: .42;
+  cursor: default;
+}
+
+.custom-shortcut-hint {
+  margin-top: 8px;
+}
+
+.shortcut-reference {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 11px;
+  border-top: 1px solid var(--fluent-stroke);
+}
+
+.shortcut-reference > span {
+  margin-right: 3px;
+  color: var(--fluent-text-muted);
+  font-size: 10px;
+}
+
 .settings-view::-webkit-scrollbar {
   width: 14px;
 }
