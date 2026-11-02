@@ -1830,6 +1830,12 @@ button:focus-visible,
   box-shadow: none;
 }
 
+#batch-links {
+  -webkit-app-region: no-drag;
+  -webkit-user-select: text !important;
+  user-select: text !important;
+}
+
 /* Let the settings content stay centered while its custom rail hugs the window edge. */
 .settings-view {
   flex: 1 1 0;
