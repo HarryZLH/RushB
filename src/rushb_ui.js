@@ -977,7 +977,7 @@
       input.select();
       return;
     }
-    if (event.key === "Enter" && !event.shiftKey && !event.isComposing && event.keyCode !== 229) {
+    if (event.key === "Enter" && event.shiftKey && !event.ctrlKey && !event.metaKey && !event.altKey && !event.isComposing && event.keyCode !== 229) {
       event.preventDefault();
       startBatch();
     }
