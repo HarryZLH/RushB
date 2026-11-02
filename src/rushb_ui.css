@@ -102,9 +102,9 @@ body {
 }
 
 .workbench {
-  width: min(630px, calc(100% - 64px));
+  width: min(560px, calc(100% - 64px));
   margin: auto;
-  padding: 6px 0 34px;
+  padding: 0 0 18px;
 }
 
 .eyebrow {
@@ -112,21 +112,6 @@ body {
   color: #9299a4;
   font-size: 12px;
   letter-spacing: .5px;
-}
-
-.workbench h1 {
-  margin: 0;
-  color: #edf0f4;
-  font-size: 27px;
-  font-weight: 650;
-  letter-spacing: -.4px;
-}
-
-.intro {
-  margin: 9px 0 25px;
-  color: #9aa2ad;
-  font-size: 13px;
-  line-height: 1.7;
 }
 
 .input-card {
@@ -139,11 +124,11 @@ body {
 
 #batch-links {
   width: 100%;
-  height: 210px;
+  height: 168px;
   display: block;
   resize: vertical;
-  min-height: 150px;
-  max-height: 310px;
+  min-height: 120px;
+  max-height: 280px;
   padding: 17px 18px;
   border: 0;
   outline: 0;
@@ -157,9 +142,9 @@ body {
 }
 
 .input-meta {
-  min-height: 40px;
+  min-height: 32px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 0 15px;
   border-top: 1px solid #343942;
@@ -170,6 +155,15 @@ body {
 #link-count {
   color: #c0c5cd;
   font-variant-numeric: tabular-nums;
+}
+
+#settings-save-path {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  color: #d0d4db;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .save-row {
@@ -184,15 +178,6 @@ body {
 
 .save-label {
   flex: 0 0 auto;
-}
-
-#save-path {
-  min-width: 0;
-  flex: 1;
-  overflow: hidden;
-  color: #d0d4db;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .text-button {
@@ -210,30 +195,10 @@ body {
   background: #38252d;
 }
 
-.quality-note {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 17px 0 20px;
-  color: #a8b0ba;
-  font-size: 12px;
-}
-
-.check-mark {
-  width: 17px;
-  height: 17px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #18392a;
-  color: #70d49b;
-  font-size: 11px;
-  font-weight: 700;
-}
-
 #start-download {
   width: 100%;
   height: 44px;
+  margin-top: 15px;
   border: 0;
   border-radius: 7px;
   background: #fb7299;
@@ -275,8 +240,8 @@ body {
 }
 
 #batch-status {
-  min-height: 22px;
-  margin-top: 14px;
+  min-height: 18px;
+  margin-top: 10px;
   color: #929aa5;
   font-size: 11px;
   text-align: center;
@@ -292,31 +257,6 @@ body {
 
 #batch-status[data-kind="error"] {
   color: #ff8394;
-}
-
-.footer {
-  display: flex;
-  justify-content: center;
-  margin-top: 7px;
-}
-
-.footer button {
-  padding: 5px 8px;
-  border: 0;
-  background: transparent;
-  color: #8e96a1;
-  font-size: 11px;
-  cursor: pointer;
-}
-
-.footer button:hover {
-  color: #d0d5dc;
-}
-
-.account-note {
-  margin: -11px 0 16px 25px;
-  color: #7f8792;
-  font-size: 11px;
 }
 
 .window-actions #download-status-button {
@@ -832,7 +772,6 @@ body {
 }
 
 .brand,
-.workbench h1,
 .settings-view > h1,
 .series-dialog-heading h2 {
   color: var(--fluent-text);
@@ -861,10 +800,7 @@ body {
   color: #9db2cb;
 }
 
-.intro,
 .save-row,
-.quality-note,
-.account-note,
 .section-title,
 .settings-hint,
 .method-panel p,
@@ -906,7 +842,7 @@ body {
 }
 
 #link-count,
-#save-path,
+#settings-save-path,
 .account-identity,
 .account-heading,
 .section-title,
@@ -922,11 +858,6 @@ body {
 .text-button:hover {
   background: rgba(96, 165, 250, .12);
   color: #c4e0ff;
-}
-
-.check-mark {
-  background: rgba(81, 172, 126, .18);
-  color: #8dd6ac;
 }
 
 #start-download,
@@ -954,14 +885,6 @@ body {
 
 #batch-status {
   color: var(--fluent-text-secondary);
-}
-
-.footer button {
-  color: var(--fluent-text-muted);
-}
-
-.footer button:hover {
-  color: var(--fluent-text);
 }
 
 .window-actions #download-status-button {
@@ -1318,7 +1241,7 @@ body.account-mode #app {
 
 .download-panel-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
   padding: 17px 17px 13px;
@@ -1335,6 +1258,45 @@ body.account-mode #app {
   margin: 5px 0 0;
   color: var(--fluent-text-secondary);
   font-size: 11px;
+}
+
+.download-panel-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex: 0 0 auto;
+}
+
+.download-panel-folder {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid var(--fluent-stroke);
+  border-radius: 7px;
+  background: rgba(232, 241, 255, .06);
+  color: var(--fluent-text-secondary);
+  font-size: 10px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.download-panel-folder svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.download-panel-folder:hover {
+  border-color: var(--fluent-stroke-strong);
+  background: rgba(96, 165, 250, .13);
+  color: #c7e1ff;
 }
 
 .download-panel-close {
