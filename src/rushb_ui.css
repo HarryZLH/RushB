@@ -107,6 +107,17 @@ body {
   padding: 0 0 18px;
 }
 
+.home-tagline {
+  margin: 0 0 22px;
+  color: #edf4ff;
+  font-size: clamp(17px, 2.2vw, 22px);
+  font-weight: 700;
+  letter-spacing: .15px;
+  line-height: 1.4;
+  text-align: center;
+  text-shadow: 0 4px 22px rgba(87, 153, 230, .24);
+}
+
 .eyebrow {
   margin: 0 0 12px;
   color: #9299a4;
