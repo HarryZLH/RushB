@@ -11,6 +11,7 @@ RushB（B站视频下载器） is a compact Windows desktop interface for batch 
 - Set a destination folder and inspect the current account status.
 - Click the compact circular title-bar button to see active, queued, paused, and failed tasks with progress and speed, or switch to the downloaded-records tab. Each downloaded record has a folder button that opens its saved download directory.
 - Import Bilibili login cookies from the default Edge or Chrome profile with the included browser extension, or use the built-in QR login page.
+- Open **Settings → Software statement** for source attribution, content-use rules, local login-data handling, and the disclaimer.
 - Dark by default, with higher-opacity Fluent surfaces over real Windows Desktop Acrylic. On Windows build 22621+, the app calls the documented `DwmSetWindowAttribute` API with `DWMWA_SYSTEMBACKDROP_TYPE=DWMSBT_TRANSIENTWINDOW` for the whole window. The bundled Electron 13.6.9 runtime does not expose Electron's newer `backgroundMaterial` method, so RushB passes its native window handle to the Windows helper. The helper logs results to the program folder's `backdrop.log`, falling back to `%LOCALAPPDATA%\RushB\logs\backdrop.log`.
 - Minimal interface with downloads shown only in the compact task panel.
 
@@ -34,6 +35,7 @@ To import a separate Edge or Chrome session, load `browser-extension/` as an unp
 ## Source attribution
 
 RushB is a modified version of Bilidown by Bilibili creator **@王子周棋洛**. The original project is no longer maintained and is now being refined and updated by **@Harry张**.
+The original project's source availability and license scope have not been verified. This attribution does not imply endorsement or grant additional rights.
 
 ## Project layout
 
