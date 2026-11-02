@@ -75,6 +75,7 @@ try {
 
     $build = [Environment]::OSVersion.Version.Build
     $darkResult = [RushBDwm]::SetAttribute($handle, 20, 1)
+    # DWMWCP_ROUND (2); the CSS window shell uses the matching 8px radius.
     $cornerResult = [RushBDwm]::SetAttribute($handle, 33, 2)
     Write-BackdropLog "Applying documented DWM backdrop; build=$build; hwnd=0x$HwndHex; darkHr=0x$([RushBDwm]::FormatHResult($darkResult)); cornerHr=0x$([RushBDwm]::FormatHResult($cornerResult))"
 
