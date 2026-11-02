@@ -427,7 +427,7 @@ body {
   min-height: 140px;
   overflow: auto;
   padding: 3px 13px 10px 22px;
-  scrollbar-color: #4a505b transparent;
+  scrollbar-color: #51494e transparent;
 }
 
 .series-episode {
@@ -733,8 +733,8 @@ body.account-mode #app {
 /* Fluent dark tinted surfaces; the Windows DWM backdrop supplies desktop blur. */
 :root {
   color-scheme: dark;
-  --fluent-accent: #60a5fa;
-  --fluent-accent-hover: #79b4ff;
+  --fluent-accent: #fb7299;
+  --fluent-accent-hover: #ff91ae;
   --fluent-text: #f1f5fb;
   --fluent-text-secondary: #b5bfce;
   --fluent-text-muted: #8d99aa;
@@ -757,8 +757,8 @@ body {
   border: 1px solid rgba(229, 237, 248, .13);
   border-radius: 14px;
   background:
-    radial-gradient(80% 75% at 4% 4%, rgba(75, 128, 195, .14), transparent 68%),
-    radial-gradient(75% 80% at 100% 100%, rgba(120, 79, 158, .10), transparent 68%),
+    radial-gradient(80% 75% at 4% 4%, rgba(251, 114, 153, .11), transparent 68%),
+    radial-gradient(75% 80% at 100% 100%, rgba(130, 72, 91, .08), transparent 68%),
     rgba(10, 15, 23, .82);
   -webkit-backdrop-filter: blur(30px) saturate(145%);
   backdrop-filter: blur(30px) saturate(145%);
@@ -778,8 +778,8 @@ body {
 }
 
 .brand-mark {
-  background: linear-gradient(145deg, #77b6ff, #397ed1);
-  box-shadow: 0 3px 12px rgba(55, 128, 213, .35);
+  background: linear-gradient(145deg, #ff9ab7, #e84e80);
+  box-shadow: 0 3px 12px rgba(251, 114, 153, .3);
 }
 
 .window-actions button {
@@ -797,7 +797,7 @@ body {
 }
 
 .eyebrow {
-  color: #9db2cb;
+  color: #c9bec4;
 }
 
 .save-row,
@@ -828,11 +828,11 @@ body {
 }
 
 #batch-links::placeholder {
-  color: #9ba8b9;
+  color: #b2a7ad;
 }
 
 #batch-links:focus-visible {
-  outline: 2px solid rgba(96, 165, 250, .8);
+  outline: 2px solid rgba(251, 114, 153, .82);
   outline-offset: -3px;
 }
 
@@ -852,12 +852,12 @@ body {
 }
 
 .text-button {
-  color: #8fc2ff;
+  color: #ff91ae;
 }
 
 .text-button:hover {
-  background: rgba(96, 165, 250, .12);
-  color: #c4e0ff;
+  background: rgba(251, 114, 153, .12);
+  color: #ffd0dd;
 }
 
 #start-download,
@@ -865,15 +865,15 @@ body {
 .series-primary {
   border: 1px solid rgba(255, 255, 255, .16);
   border-radius: 7px;
-  background: linear-gradient(180deg, #6caeff, #3985df);
-  color: #071321;
-  box-shadow: 0 5px 18px rgba(42, 116, 203, .24), inset 0 1px rgba(255, 255, 255, .32);
+  background: linear-gradient(180deg, #ff91ae, #e95583);
+  color: #ffffff;
+  box-shadow: 0 5px 18px rgba(251, 114, 153, .23), inset 0 1px rgba(255, 255, 255, .32);
 }
 
 #start-download:hover:not(:disabled),
 .settings-primary:hover,
 .series-primary:hover:not(:disabled) {
-  background: linear-gradient(180deg, #8bc0ff, #5599ed);
+  background: linear-gradient(180deg, #ffa3bb, #f4779b);
 }
 
 #start-download:active:not(:disabled),
@@ -890,7 +890,7 @@ body {
 .window-actions #download-status-button {
   border-color: var(--fluent-stroke-strong);
   background: rgba(232, 241, 255, .08);
-  color: #d7e8ff;
+  color: #ffc2d2;
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
 }
@@ -918,7 +918,7 @@ body {
 
 .about-button:hover {
   border-color: var(--fluent-stroke-strong);
-  background: rgba(45, 58, 75, .72);
+  background: rgba(42, 35, 40, .88);
 }
 
 .about-button:active {
@@ -1020,16 +1020,16 @@ body {
 .about-dialog-body {
   overflow: auto;
   padding: 16px 22px 22px;
-  scrollbar-color: #485465 transparent;
+  scrollbar-color: #51494e transparent;
 }
 
 .about-lead {
   margin: 0 0 17px;
   padding: 10px 12px;
-  border: 1px solid rgba(96, 165, 250, .24);
+  border: 1px solid rgba(251, 114, 153, .24);
   border-radius: 8px;
   background: rgba(44, 82, 124, .22);
-  color: #bcdcff;
+  color: #ffd0dd;
   font-size: 11px;
   font-weight: 600;
 }
@@ -1061,7 +1061,7 @@ body {
 }
 
 .about-section strong {
-  color: #dcecff;
+  color: #ffd6e2;
   font-weight: 650;
 }
 
@@ -1079,12 +1079,12 @@ body {
 
 .method-card:hover {
   border-color: var(--fluent-stroke-strong);
-  background: rgba(45, 58, 75, .62);
+  background: rgba(42, 35, 40, .84);
 }
 
 .method-card:has(input:checked) {
-  border-color: rgba(96, 165, 250, .58);
-  background: rgba(43, 77, 114, .48);
+  border-color: rgba(251, 114, 153, .48);
+  background: rgba(251, 114, 153, .14);
 }
 
 .method-card input,
@@ -1118,7 +1118,7 @@ body {
 }
 
 .series-dialog-heading .eyebrow {
-  color: #8fc2ff;
+  color: #ff91ae;
 }
 
 .series-subtitle,
@@ -1133,7 +1133,7 @@ body {
 }
 
 .series-count strong {
-  color: #9bcaff;
+  color: #ff9ab7;
 }
 
 .series-episode:hover {
@@ -1141,7 +1141,7 @@ body {
 }
 
 .series-episode-title {
-  color: #edf3fb;
+  color: #f4eef1;
 }
 
 .series-dialog-footer {
@@ -1173,7 +1173,7 @@ textarea {
 
 button:focus-visible,
 .method-card:focus-within {
-  outline: 2px solid rgba(125, 187, 255, .92);
+  outline: 2px solid rgba(251, 114, 153, .92);
   outline-offset: 2px;
 }
 
@@ -1197,7 +1197,7 @@ body.account-mode #app {
 }
 
 #return-to-rushb:hover {
-  border-color: rgba(96, 165, 250, .75);
+  border-color: rgba(251, 114, 153, .75);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1295,8 +1295,8 @@ body.account-mode #app {
 
 .download-panel-folder:hover {
   border-color: var(--fluent-stroke-strong);
-  background: rgba(96, 165, 250, .13);
-  color: #c7e1ff;
+  background: rgba(251, 114, 153, .13);
+  color: #ffd0dd;
 }
 
 .download-panel-close {
@@ -1390,14 +1390,14 @@ body.account-mode #app {
 }
 
 .download-tab.is-selected {
-  border-color: rgba(96, 165, 250, .33);
-  background: rgba(66, 126, 193, .2);
-  color: #dcebff;
+  border-color: rgba(251, 114, 153, .33);
+  background: rgba(251, 114, 153, .18);
+  color: #ffd6e2;
 }
 
 .download-tab.is-selected span {
-  background: rgba(96, 165, 250, .2);
-  color: #b9d9ff;
+  background: rgba(251, 114, 153, .2);
+  color: #ffc2d2;
 }
 
 .download-list {
@@ -1460,7 +1460,7 @@ body.account-mode #app {
   font-size: 10px;
 }
 
-.download-row-state.is-active { color: #83bcff; }
+.download-row-state.is-active { color: #ff91ae; }
 .download-row-state.is-paused { color: #e5c26e; }
 .download-row-state.is-error,
 .download-row-error { color: #ff8794; }
@@ -1492,13 +1492,13 @@ body.account-mode #app {
 }
 
 .download-row-folder:hover {
-  border-color: rgba(131, 188, 255, .55);
-  background: rgba(96, 165, 250, .16);
-  color: #c6e1ff;
+  border-color: rgba(251, 114, 153, .55);
+  background: rgba(251, 114, 153, .16);
+  color: #ffd0dd;
 }
 
 .download-row-folder:focus-visible {
-  outline: 2px solid #83bcff;
+  outline: 2px solid #ff91ae;
   outline-offset: 2px;
 }
 
@@ -1521,7 +1521,7 @@ body.account-mode #app {
   height: 100%;
   display: block;
   border-radius: inherit;
-  background: linear-gradient(90deg, #4598f2, #8cc6ff);
+  background: linear-gradient(90deg, #e95583, #ff9ab7);
   transition: width .3s ease;
 }
 
@@ -1556,4 +1556,244 @@ body [contenteditable="plaintext-only"],
 body [contenteditable="plaintext-only"] * {
   -webkit-user-select: text !important;
   user-select: text !important;
+}
+
+/* Unified RushB visual system: Bilibili pink accents and softer corner geometry. */
+:root {
+  --fluent-accent: #fb7299;
+  --fluent-accent-hover: #ff91ae;
+  --fluent-accent-soft: rgba(251, 114, 153, .14);
+  --fluent-accent-stroke: rgba(251, 114, 153, .48);
+  --fluent-text: #f4eef1;
+  --fluent-text-secondary: #c9bec4;
+  --fluent-text-muted: #a1969d;
+  --fluent-stroke: rgba(246, 232, 238, .12);
+  --fluent-stroke-strong: rgba(246, 232, 238, .2);
+  --fluent-surface: rgba(29, 26, 30, .86);
+  --fluent-surface-raised: rgba(42, 35, 40, .91);
+  --fluent-surface-inset: rgba(15, 13, 16, .8);
+  --window-radius: 8px;
+  --dialog-radius: 22px;
+  --card-radius: 18px;
+  --selection-radius: 15px;
+  --control-radius: 12px;
+  --row-radius: 14px;
+  --compact-radius: 10px;
+}
+
+/* The shell radius matches DWMWCP_ROUND; larger radii stay inside the window. */
+#batch-shell.is-ready {
+  border-color: rgba(246, 232, 238, .15);
+  border-radius: var(--window-radius);
+  background:
+    radial-gradient(80% 75% at 4% 4%, rgba(251, 114, 153, .11), transparent 68%),
+    radial-gradient(75% 80% at 100% 100%, rgba(130, 72, 91, .08), transparent 68%),
+    rgba(15, 13, 16, .84);
+}
+
+.app-header {
+  background: rgba(18, 16, 19, .84);
+}
+
+.brand-mark {
+  background: linear-gradient(145deg, #ff9ab7, #e84e80);
+  box-shadow: 0 3px 12px rgba(251, 114, 153, .3);
+}
+
+.eyebrow,
+.series-dialog-heading .eyebrow {
+  color: #f6a0b9;
+}
+
+#batch-links:focus-visible {
+  outline-color: rgba(251, 114, 153, .82);
+}
+
+.text-button {
+  border-radius: var(--compact-radius);
+  color: #ff91ae;
+}
+
+.text-button:hover {
+  background: rgba(251, 114, 153, .12);
+  color: #ffc2d2;
+}
+
+#start-download,
+.settings-primary,
+.series-primary {
+  border-radius: var(--control-radius);
+  background: linear-gradient(135deg, #ff91ae, #e95583);
+  color: #fff;
+  box-shadow: 0 7px 20px rgba(251, 114, 153, .22), inset 0 1px rgba(255, 255, 255, .24);
+}
+
+#start-download:hover:not(:disabled),
+.settings-primary:hover,
+.series-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ffa3bb, #f4779b);
+}
+
+.series-secondary {
+  border-radius: var(--control-radius);
+}
+
+.window-actions #download-status-button {
+  color: var(--fluent-text-secondary);
+}
+
+#download-status-button[data-state="processing"] .download-status-dot {
+  background: var(--fluent-accent);
+}
+
+.input-card,
+.settings-card,
+.about-button {
+  border-radius: var(--card-radius);
+}
+
+.method-card,
+.series-episode {
+  border: 1px solid var(--fluent-stroke);
+  border-radius: var(--selection-radius);
+  background: var(--fluent-surface);
+  transition: border-color .16s ease, background .16s ease, box-shadow .16s ease;
+}
+
+.method-card:hover,
+.series-episode:hover {
+  border-color: var(--fluent-stroke-strong);
+  background: var(--fluent-surface-raised);
+}
+
+.method-card:has(input:checked),
+.series-episode:has(input:checked) {
+  border-color: var(--fluent-accent-stroke);
+  background: var(--fluent-accent-soft);
+  box-shadow: inset 0 0 0 1px rgba(251, 114, 153, .08);
+}
+
+.method-card input,
+.series-episode input {
+  accent-color: var(--fluent-accent);
+}
+
+.method-card:focus-within {
+  outline: 2px solid rgba(251, 114, 153, .72);
+  outline-offset: 2px;
+}
+
+.about-button:hover {
+  border-color: var(--fluent-stroke-strong);
+  background: var(--fluent-surface-raised);
+}
+
+.about-dialog,
+.series-dialog,
+.download-panel {
+  border-radius: var(--dialog-radius);
+}
+
+.about-lead {
+  border-color: var(--fluent-accent-stroke);
+  border-radius: var(--row-radius);
+  background: var(--fluent-accent-soft);
+  color: #ffd0dd;
+}
+
+.about-section strong,
+.series-count strong {
+  color: #ff9ab7;
+}
+
+.about-close,
+.download-panel-folder,
+.download-panel-close,
+.download-clear-records,
+.download-row-folder,
+#return-to-rushb:not([hidden]) {
+  border-radius: var(--control-radius);
+}
+
+.about-close:hover,
+.download-panel-close:hover {
+  background: rgba(255, 246, 249, .1);
+}
+
+.method-card:has(input:checked) {
+  border-color: var(--fluent-accent-stroke);
+  background: var(--fluent-accent-soft);
+}
+
+.series-count {
+  border-color: var(--fluent-stroke);
+  border-radius: 999px;
+}
+
+.series-episode {
+  min-height: 48px;
+}
+
+.series-episode-number {
+  color: var(--fluent-text-secondary);
+}
+
+.series-episode-title {
+  color: var(--fluent-text);
+}
+
+button:focus-visible,
+.download-row-folder:focus-visible {
+  outline: 2px solid rgba(251, 114, 153, .78);
+  outline-offset: 2px;
+}
+
+#return-to-rushb:hover {
+  border-color: var(--fluent-accent-stroke);
+}
+
+.download-panel-folder:hover,
+.download-row-folder:hover {
+  border-color: var(--fluent-accent-stroke);
+  background: var(--fluent-accent-soft);
+  color: #ffd0dd;
+}
+
+.download-tab {
+  border-radius: var(--control-radius);
+}
+
+.download-tab.is-selected {
+  border-color: var(--fluent-accent-stroke);
+  background: var(--fluent-accent-soft);
+  color: #ffd0dd;
+}
+
+.download-tab span {
+  border-radius: 999px;
+  background: rgba(255, 246, 249, .08);
+}
+
+.download-tab.is-selected span {
+  background: rgba(251, 114, 153, .2);
+  color: #ffc2d2;
+}
+
+.download-row {
+  border-color: var(--fluent-stroke);
+  border-radius: var(--row-radius);
+  background: rgba(255, 246, 249, .045);
+}
+
+.download-row-state.is-active {
+  color: #ff91ae;
+}
+
+.download-progress-track {
+  border-radius: 999px;
+  background: rgba(255, 246, 249, .11);
+}
+
+.download-progress-track span {
+  background: linear-gradient(90deg, #e95583, #ff9ab7);
 }
