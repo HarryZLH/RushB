@@ -62,9 +62,11 @@ INDEX_HTML = r'''<!doctype html>
       <div id="batch-status" role="status" aria-live="polite"></div>
     </main>
     <main id="settings-view" class="settings-view" hidden>
-      <button id="back-to-home" class="text-button back-button">&#8592; 返回下载器</button>
-      <p class="eyebrow">设置</p>
-      <h1>账号与下载</h1>
+      <div class="settings-intro">
+        <button id="back-to-home" class="text-button back-button">&#8592; 返回下载器</button>
+        <p class="eyebrow">设置</p>
+        <h1>账号与下载</h1>
+      </div>
       <section class="login-settings-group" aria-label="账号与登录">
         <p class="section-title login-group-title">账号与登录</p>
         <section class="settings-card account-card">
