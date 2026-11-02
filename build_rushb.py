@@ -27,7 +27,7 @@ INDEX_HTML = r'''<!doctype html>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="referrer" content="no-referrer">
-  <title>RushB（B站视频下载器）</title>
+  <title>RushB — 世界上最好用的B站视频下载器</title>
   <link href="./assets/css/chunk-vendors.00d3c6de.css" rel="stylesheet">
   <link href="./assets/css/app.cfce7cff.css" rel="stylesheet">
   <link href="./assets/css/rushb-ui.css" rel="stylesheet">
@@ -52,6 +52,7 @@ INDEX_HTML = r'''<!doctype html>
       </div>
     </header>
     <main class="workbench">
+      <h1 class="home-tagline">世界上最好用的B站视频下载器</h1>
       <section class="input-card">
         <textarea id="batch-links" spellcheck="false" placeholder="粘贴 B 站视频链接，每行一个"></textarea>
         <div class="input-meta">
@@ -320,7 +321,7 @@ def copy_runtime() -> None:
 def write_readme() -> None:
     readme = """# RushB（B站视频下载器）
 
-RushB 是一个面向 B 站视频的简洁批量下载桌面界面。默认使用暗色主题和 Fluent 半透明表面。Windows build 22621 及更新版本通过文档化的 `DwmSetWindowAttribute(DWMWA_SYSTEMBACKDROP_TYPE, DWMSBT_TRANSIENTWINDOW)` 为整个窗口请求系统 Desktop Acrylic；旧版 Electron 不提供 `backgroundMaterial` API，因此由 Windows helper 从 Electron 原生 HWND 调用 DWM。窗内卡片的 `backdrop-filter` 只负责网页界面内部效果，桌面后景模糊由 DWM 提供。调用结果写入程序目录的 `backdrop.log`，不可写时写入 `%LOCALAPPDATA%\\RushB\\logs\\backdrop.log`。视频解析、分 P 选择、最高可用画质/音质、aria2 下载和音视频合并由本机 Bilidown 1.2.7 引擎提供。
+世界上最好用的B站视频下载器。
 
 ## 使用
 
