@@ -10,6 +10,7 @@ RushB（B站视频下载器） is a compact Windows desktop interface for batch 
 - Automatically select the highest available video and audio quality.
 - Set a destination folder and inspect the current account status.
 - Click the compact circular title-bar button to see active, queued, paused, and failed tasks with progress and speed, or switch to the downloaded-records tab. Each downloaded record has a folder button that opens its saved download directory.
+- Clear downloaded history records from that panel; this does not delete the video files on disk.
 - Open the download folder from the title-bar download panel. Set the save path and view the highest available quality in Settings.
 - Import Bilibili login cookies from the default Edge or Chrome profile with the included browser extension, or use the built-in QR login page.
 - Open **Settings → Software statement** for source attribution, content-use rules, local login-data handling, and the disclaimer.
