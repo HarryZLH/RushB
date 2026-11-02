@@ -31,6 +31,12 @@
   const accountStatus = document.getElementById("account-status");
   const accountIdentity = document.getElementById("account-identity");
   const browserStatus = document.getElementById("browser-import-status");
+  const enterBehaviorInputs = [...document.querySelectorAll('input[name="enter-behavior"]')];
+  const ctrlEnterShortcutInput = document.getElementById("shortcut-ctrl-enter");
+  const customShortcutValue = document.getElementById("custom-shortcut-value");
+  const customShortcutHint = document.getElementById("custom-shortcut-hint");
+  const customShortcutRecordButton = document.getElementById("custom-shortcut-record");
+  const customShortcutClearButton = document.getElementById("custom-shortcut-clear");
   const seriesPicker = document.getElementById("series-picker");
   const seriesList = document.getElementById("series-episode-list");
   const seriesSelectedCount = document.getElementById("series-selected-count");
@@ -55,6 +61,23 @@
   let browserToken = "";
   let browserImportStarted = false;
   let savePath = localStorage.getItem("defaultDownPath") || remote.app.getPath("desktop");
+  let enterBehavior = localStorage.getItem("rushb.shortcuts.enterBehavior") === "enter-download" ? "enter-download" : "shift-enter-download";
+  let ctrlEnterDownloadEnabled = localStorage.getItem("rushb.shortcuts.ctrlEnterDownload") === "true";
+  let customDownloadShortcut = null;
+  let shortcutCaptureActive = false;
+  try {
+    const storedShortcut = JSON.parse(localStorage.getItem("rushb.shortcuts.customDownload") || "null");
+    if (storedShortcut && typeof storedShortcut.code === "string" && typeof storedShortcut.key === "string") {
+      customDownloadShortcut = {
+        code: storedShortcut.code,
+        key: storedShortcut.key,
+        ctrl: storedShortcut.ctrl === true,
+        alt: storedShortcut.alt === true,
+        shift: storedShortcut.shift === true,
+        meta: storedShortcut.meta === true,
+      };
+    }
+  } catch {}
   const extensionPath = path.join(path.dirname(remote.app.getPath("exe")), "RushB浏览器登录桥接");
 
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -445,6 +468,80 @@
     });
     document.getElementById("browser-method").hidden = method !== "browser";
     document.getElementById("manual-method").hidden = method !== "manual";
+  }
+
+  function formatShortcut(shortcut) {
+    const parts = [];
+    if (shortcut.ctrl) parts.push("Ctrl");
+    if (shortcut.alt) parts.push("Alt");
+    if (shortcut.shift) parts.push("Shift");
+    if (shortcut.meta) parts.push("⌘");
+    parts.push(shortcut.key === " " ? "Space" : shortcut.key);
+    return parts.join(" + ");
+  }
+
+  function renderShortcutSettings() {
+    enterBehaviorInputs.forEach((radio) => {
+      radio.checked = radio.value === enterBehavior;
+    });
+    ctrlEnterShortcutInput.checked = ctrlEnterDownloadEnabled;
+    customShortcutValue.textContent = customDownloadShortcut ? formatShortcut(customDownloadShortcut) : "未设置";
+    customShortcutClearButton.disabled = !customDownloadShortcut || shortcutCaptureActive;
+    customShortcutRecordButton.textContent = shortcutCaptureActive ? "按下组合键…" : "录制组合键";
+    customShortcutHint.textContent = shortcutCaptureActive
+      ? "请按下 Ctrl、Alt 或 ⌘ 组合键；按 Esc 取消录制。"
+      : "只在链接输入框聚焦时生效。录制时按 Esc 取消。";
+  }
+
+  function shortcutFromEvent(event) {
+    return {
+      code: event.code,
+      key: event.key.length === 1 ? event.key.toUpperCase() : event.key,
+      ctrl: event.ctrlKey,
+      alt: event.altKey,
+      shift: event.shiftKey,
+      meta: event.metaKey,
+    };
+  }
+
+  function isReservedShortcut(shortcut) {
+    if (["Escape", "Tab", "Enter", "Backspace", "Delete", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End", "PageUp", "PageDown"].includes(shortcut.key)) return true;
+    const primaryModifier = shortcut.ctrl || shortcut.meta;
+    if (primaryModifier && !shortcut.alt && !shortcut.shift && ["A", "C", "V", "X", "Z", "Y"].includes(shortcut.key)) return true;
+    return shortcut.code === "F4" && shortcut.alt;
+  }
+
+  function matchesShortcut(event, shortcut) {
+    return event.code === shortcut.code
+      && event.ctrlKey === shortcut.ctrl
+      && event.altKey === shortcut.alt
+      && event.shiftKey === shortcut.shift
+      && event.metaKey === shortcut.meta;
+  }
+
+  function captureShortcutKeydown(event) {
+    if (!shortcutCaptureActive) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    if (event.key === "Escape") {
+      shortcutCaptureActive = false;
+      renderShortcutSettings();
+      return;
+    }
+    if (["Control", "Alt", "Shift", "Meta"].includes(event.key)) return;
+    const shortcut = shortcutFromEvent(event);
+    if (!(shortcut.ctrl || shortcut.alt || shortcut.meta)) {
+      customShortcutHint.textContent = "請使用 Ctrl、Alt 或 ⌘ 作为组合键前缀。";
+      return;
+    }
+    if (isReservedShortcut(shortcut)) {
+      customShortcutHint.textContent = "这是常用编辑或系统快捷键，请换一个组合键。";
+      return;
+    }
+    customDownloadShortcut = shortcut;
+    localStorage.setItem("rushb.shortcuts.customDownload", JSON.stringify(shortcut));
+    shortcutCaptureActive = false;
+    renderShortcutSettings();
   }
 
   function showSettings() {
@@ -967,6 +1064,28 @@
   document.querySelectorAll('input[name="login-method"]').forEach((radio) => {
     radio.addEventListener("change", () => setLoginMethod(radio.value));
   });
+  enterBehaviorInputs.forEach((radio) => {
+    radio.addEventListener("change", () => {
+      if (!radio.checked) return;
+      enterBehavior = radio.value === "enter-download" ? "enter-download" : "shift-enter-download";
+      localStorage.setItem("rushb.shortcuts.enterBehavior", enterBehavior);
+    });
+  });
+  ctrlEnterShortcutInput.addEventListener("change", () => {
+    ctrlEnterDownloadEnabled = ctrlEnterShortcutInput.checked;
+    localStorage.setItem("rushb.shortcuts.ctrlEnterDownload", String(ctrlEnterDownloadEnabled));
+  });
+  customShortcutRecordButton.addEventListener("click", () => {
+    shortcutCaptureActive = !shortcutCaptureActive;
+    renderShortcutSettings();
+  });
+  customShortcutClearButton.addEventListener("click", () => {
+    customDownloadShortcut = null;
+    shortcutCaptureActive = false;
+    localStorage.removeItem("rushb.shortcuts.customDownload");
+    renderShortcutSettings();
+  });
+  document.addEventListener("keydown", captureShortcutKeydown, true);
 
   downloadPanelOpenFolderButton.addEventListener("click", () => remote.shell.openPath(savePath));
   startButton.addEventListener("click", startBatch);
@@ -977,7 +1096,23 @@
       input.select();
       return;
     }
-    if (event.key === "Enter" && event.shiftKey && !event.ctrlKey && !event.metaKey && !event.altKey && !event.isComposing && event.keyCode !== 229) {
+    if (event.isComposing || event.keyCode === 229) return;
+    if (customDownloadShortcut && matchesShortcut(event, customDownloadShortcut)) {
+      event.preventDefault();
+      startBatch();
+      return;
+    }
+    const isEnter = event.key === "Enter";
+    const hasPrimaryModifier = event.ctrlKey || event.metaKey;
+    if (isEnter && ctrlEnterDownloadEnabled && hasPrimaryModifier && !event.shiftKey && !event.altKey) {
+      event.preventDefault();
+      startBatch();
+      return;
+    }
+    const plainEnter = isEnter && !event.shiftKey && !event.ctrlKey && !event.metaKey && !event.altKey;
+    const shiftEnter = isEnter && event.shiftKey && !event.ctrlKey && !event.metaKey && !event.altKey;
+    const shouldDownload = enterBehavior === "enter-download" ? plainEnter : shiftEnter;
+    if (shouldDownload) {
       event.preventDefault();
       startBatch();
     }
@@ -990,6 +1125,7 @@
 
   updatePathLabel();
   updateCount();
+  renderShortcutSettings();
   setLoginMethod(localStorage.getItem("loginMethod") === "manual" ? "manual" : "browser");
   startDownloadStatusMonitor();
 
