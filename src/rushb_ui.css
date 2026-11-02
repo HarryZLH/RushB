@@ -1797,3 +1797,18 @@ button:focus-visible,
 .download-progress-track span {
   background: linear-gradient(90deg, #e95583, #ff9ab7);
 }
+
+/* Keep the focus indicator on the rounded card instead of a clipped textarea outline. */
+.input-card:focus-within {
+  border-color: rgba(251, 114, 153, .72);
+  box-shadow: 0 0 0 1px rgba(251, 114, 153, .14),
+    0 12px 36px rgba(0, 0, 0, .18),
+    inset 0 1px rgba(255, 255, 255, .035);
+}
+
+#batch-links:focus-visible {
+  border-radius: inherit;
+  outline: none;
+  outline-offset: 0;
+  box-shadow: none;
+}
