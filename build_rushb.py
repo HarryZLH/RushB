@@ -106,6 +106,36 @@ INDEX_HTML = r'''<!doctype html>
           <button id="settings-choose-folder" class="text-button">更改</button>
         </div>
       </section>
+      <p class="section-title keyboard-section-title">快捷键与自定义</p>
+      <section class="settings-card keyboard-settings" aria-label="快捷键设置">
+        <div class="account-heading"><span>回车行为</span><span class="settings-value">链接输入框</span></div>
+        <div class="shortcut-preset-list">
+          <label class="shortcut-option">
+            <input type="radio" name="enter-behavior" value="shift-enter-download" checked>
+            <span><strong>回车换行</strong><small>Shift + Enter 开始下载</small></span>
+          </label>
+          <label class="shortcut-option">
+            <input type="radio" name="enter-behavior" value="enter-download">
+            <span><strong>回车下载</strong><small>Shift + Enter 换行</small></span>
+          </label>
+        </div>
+        <label class="shortcut-toggle">
+          <input id="shortcut-ctrl-enter" type="checkbox">
+          <span class="shortcut-copy"><strong>Ctrl + Enter 快速下载</strong><small>开启后可随时用组合键开始下载</small></span>
+          <kbd>Ctrl + Enter</kbd>
+        </label>
+        <div class="custom-shortcut-row">
+          <div class="custom-shortcut-copy"><strong>自定义下载组合键</strong><small id="custom-shortcut-value">未设置</small></div>
+          <div class="custom-shortcut-actions">
+            <button id="custom-shortcut-record" class="text-button" type="button">录制组合键</button>
+            <button id="custom-shortcut-clear" class="text-button" type="button" disabled>清除</button>
+          </div>
+        </div>
+        <p id="custom-shortcut-hint" class="settings-hint custom-shortcut-hint" role="status">只在链接输入框聚焦时生效。录制时按 Esc 取消。</p>
+        <div class="shortcut-reference" aria-label="常用编辑快捷键">
+          <span>常用编辑</span><kbd>Ctrl + A 全选</kbd><kbd>Ctrl + C 复制</kbd><kbd>Ctrl + V 粘贴</kbd><kbd>Ctrl + X 剪切</kbd><kbd>Ctrl + Z 撤销</kbd><kbd>Ctrl + Y 重做</kbd>
+        </div>
+      </section>
       <p class="section-title">关于</p>
       <button id="about-button" class="settings-card about-button" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="about-dialog">
         <span class="about-button-copy"><strong>软件声明</strong><small>项目来源、使用规范、隐私说明与免责声明</small></span>
