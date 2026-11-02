@@ -1812,3 +1812,58 @@ button:focus-visible,
   outline-offset: 0;
   box-shadow: none;
 }
+
+/* Let the settings content stay centered while its custom rail hugs the window edge. */
+.settings-view {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 10px 0 24px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(251, 114, 153, .48) transparent;
+}
+
+.settings-view > * {
+  width: min(610px, calc(100% - 64px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.settings-view > .back-button {
+  text-align: left;
+}
+
+.settings-view::-webkit-scrollbar {
+  width: 14px;
+}
+
+.settings-view::-webkit-scrollbar-track {
+  margin: 9px 0;
+  border-radius: 999px;
+  background: rgba(255, 246, 249, .035);
+}
+
+.settings-view::-webkit-scrollbar-thumb {
+  min-height: 42px;
+  border: 4px solid transparent;
+  border-radius: 999px;
+  background: rgba(251, 114, 153, .48);
+  background-clip: padding-box;
+}
+
+.settings-view::-webkit-scrollbar-thumb:hover {
+  border-width: 3px;
+  background: rgba(255, 145, 174, .78);
+  background-clip: padding-box;
+}
+
+.settings-view::-webkit-scrollbar-button,
+.settings-view::-webkit-scrollbar-corner {
+  display: none;
+  width: 0;
+  height: 0;
+}
