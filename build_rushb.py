@@ -45,7 +45,7 @@ INDEX_HTML = r'''<!doctype html>
           <span class="download-status-arrow" aria-hidden="true">&#8595;</span>
           <span class="download-status-dot" aria-hidden="true"></span>
         </button>
-        <button id="settings-button" aria-label="设置" title="设置">&#9881;</button>
+        <button id="settings-button" aria-label="设置" title="设置" aria-controls="settings-view" aria-expanded="false">&#9881;</button>
         <button id="minimize-window" aria-label="最小化">&#8212;</button>
         <button id="maximize-window" aria-label="最大化">&#9633;</button>
         <button id="close-window" aria-label="关闭">&#215;</button>
