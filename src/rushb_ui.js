@@ -22,6 +22,7 @@
   const downloadTabCompleted = document.getElementById("download-tab-completed");
   const downloadClearRecordsButton = document.getElementById("download-clear-records");
   const settingsView = document.getElementById("settings-view");
+  const settingsButton = document.getElementById("settings-button");
   const aboutButton = document.getElementById("about-button");
   const aboutDialog = document.getElementById("about-dialog");
   const aboutCloseButton = document.getElementById("about-close");
@@ -449,6 +450,7 @@
   function showSettings() {
     document.querySelector(".workbench").hidden = true;
     settingsView.hidden = false;
+    settingsButton.setAttribute("aria-expanded", "true");
     updatePathLabel();
     refreshAccountStatus();
   }
@@ -456,6 +458,12 @@
   function showHome() {
     settingsView.hidden = true;
     document.querySelector(".workbench").hidden = false;
+    settingsButton.setAttribute("aria-expanded", "false");
+  }
+
+  function toggleSettings() {
+    if (settingsView.hidden) showSettings();
+    else showHome();
   }
 
   function openAboutDialog() {
@@ -898,7 +906,7 @@
   }
 
   document.getElementById("settings-choose-folder").addEventListener("click", chooseSavePath);
-  document.getElementById("settings-button").addEventListener("click", showSettings);
+  settingsButton.addEventListener("click", toggleSettings);
   document.getElementById("back-to-home").addEventListener("click", showHome);
   aboutButton.addEventListener("click", openAboutDialog);
   aboutCloseButton.addEventListener("click", closeAboutDialog);
