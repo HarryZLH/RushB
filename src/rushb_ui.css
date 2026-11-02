@@ -1851,6 +1851,9 @@ button:focus-visible,
 }
 
 .settings-view > .back-button {
+  width: fit-content;
+  margin: 0 0 18px max(32px, calc((100% - 610px) / 2));
+  padding: 6px 10px;
   text-align: left;
 }
 
