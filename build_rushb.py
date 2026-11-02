@@ -39,7 +39,7 @@ INDEX_HTML = r'''<!doctype html>
   <div id="app"></div>
   <div id="batch-shell">
     <header class="app-header">
-      <div class="brand"><span class="brand-mark">R</span><span>RushB（B站视频下载器）</span></div>
+      <div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><path d="M12.15 2.55 6.2 10.1c-.32.41-.03.99.49.99h3.03l-1.08 5.94c-.13.69.5.96.91.38l5.8-7.63c.32-.42.03-1-.49-1h-3l1.16-5.82c.14-.7-.45-.98-.87-.41Z"/></svg></span><span>RushB（B站视频下载器）</span></div>
       <div class="window-actions">
         <button id="download-status-button" class="download-status" type="button" data-state="idle" aria-haspopup="dialog" aria-expanded="false" aria-controls="download-panel" aria-label="下载状态：空闲；点击打开下载任务面板" title="下载状态：空闲；点击打开下载任务面板">
           <span class="download-status-arrow" aria-hidden="true">&#8595;</span>
