@@ -1,3 +1,5 @@
+# Local builds and runtime artifacts
+outputs/
 dist/
 resources/
 *.exe
@@ -6,5 +8,33 @@ resources/
 *.dat
 *.bin
 *.asar
+*.log
+
+# Local credentials, browser profiles, and account/session state
+.env
+.env.*
+!.env.example
+*.cookie
+*.cookies
+*.session
+*.token
+*.sqlite
+*.sqlite3
+*.db
+*cookie*.json
+*cookie*.txt
+**/Cookies
+**/Local State
+**/Login Data
+**/Web Data
+**/User Data/
+**/userData/
+**/userdata/
+**/user-data/
+**/login-data/
+**/session-data/
+**/profiles/
+**/profile/
+
 __pycache__/
 *.py[cod]
