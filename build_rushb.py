@@ -27,7 +27,7 @@ INDEX_HTML = r'''<!doctype html>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="referrer" content="no-referrer">
-  <title>RushB — 世界上最好用的B站视频下载器</title>
+  <title>RushB（B站视频下载器）</title>
   <link href="./assets/css/chunk-vendors.00d3c6de.css" rel="stylesheet">
   <link href="./assets/css/app.cfce7cff.css" rel="stylesheet">
   <link href="./assets/css/rushb-ui.css" rel="stylesheet">
@@ -52,7 +52,6 @@ INDEX_HTML = r'''<!doctype html>
       </div>
     </header>
     <main class="workbench">
-      <h1 class="home-tagline">世界上最好用的B站视频下载器</h1>
       <section class="input-card">
         <textarea id="batch-links" spellcheck="false" placeholder="粘贴 B 站视频链接，每行一个"></textarea>
         <div class="input-meta">
@@ -321,7 +320,7 @@ def copy_runtime() -> None:
 def write_readme() -> None:
     readme = """# RushB（B站视频下载器）
 
-世界上最好用的B站视频下载器。
+RushB 提供批量链接下载、系列视频选择、最高可用音视频画质自动选择、账号登录管理，以及下载任务与记录管理。
 
 ## 使用
 
