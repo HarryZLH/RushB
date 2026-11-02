@@ -1,6 +1,6 @@
 # RushB（B站视频下载器）
 
-RushB（B站视频下载器） is a compact Windows desktop interface for batch downloading Bilibili videos. It reuses the local Bilidown 1.2.7 parser and download engine, selects the highest quality available to the current account, and supports both browser-cookie import and in-app QR login.
+> 世界上最好用的B站视频下载器
 
 ## Features
 
