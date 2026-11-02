@@ -20,6 +20,7 @@
   const downloadCompletedCount = document.getElementById("download-completed-count");
   const downloadTabActive = document.getElementById("download-tab-active");
   const downloadTabCompleted = document.getElementById("download-tab-completed");
+  const downloadClearRecordsButton = document.getElementById("download-clear-records");
   const settingsView = document.getElementById("settings-view");
   const aboutButton = document.getElementById("about-button");
   const aboutDialog = document.getElementById("about-dialog");
@@ -48,6 +49,7 @@
   let downloadedRecords = [];
   let downloadedRecordsError = "";
   let downloadedRecordsLoading = false;
+  let downloadedRecordsClearing = false;
   let browserServer = null;
   let browserToken = "";
   let browserImportStarted = false;
@@ -281,11 +283,47 @@
     }
   }
 
+  async function clearDownloadedRecords() {
+    if (downloadedRecordsLoading || downloadedRecordsClearing || downloadedRecordsError || !downloadedRecords.length) return;
+    downloadedRecordsClearing = true;
+    renderDownloadedRecords();
+    let database;
+    try {
+      database = await new Promise((resolve, reject) => {
+        const request = indexedDB.open("downloadDatabase");
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error || new Error("打开下载记录失败"));
+      });
+      if (!database.objectStoreNames.contains("downloaded")) {
+        downloadedRecords = [];
+        downloadedRecordsError = "";
+        return;
+      }
+      await new Promise((resolve, reject) => {
+        const transaction = database.transaction("downloaded", "readwrite");
+        const request = transaction.objectStore("downloaded").clear();
+        request.onerror = () => reject(request.error || new Error("清理下载记录失败"));
+        transaction.oncomplete = resolve;
+        transaction.onerror = () => reject(transaction.error || new Error("清理下载记录失败"));
+        transaction.onabort = () => reject(transaction.error || new Error("清理下载记录已取消"));
+      });
+      downloadedRecords = [];
+      downloadedRecordsError = "";
+    } catch (error) {
+      downloadedRecordsError = error?.message || "清理下载记录失败。";
+    } finally {
+      database?.close();
+      downloadedRecordsClearing = false;
+      renderDownloadedRecords();
+    }
+  }
+
   function renderDownloadedRecords() {
     downloadCompletedCount.textContent = String(downloadedRecords.length);
+    downloadClearRecordsButton.disabled = downloadedRecordsLoading || downloadedRecordsClearing || Boolean(downloadedRecordsError) || !downloadedRecords.length;
     if (downloadedRecordsLoading) return renderEmptyList(downloadCompletedList, "正在读取已下载记录…");
     if (downloadedRecordsError) return renderEmptyList(downloadCompletedList, downloadedRecordsError);
-    if (!downloadedRecords.length) return renderEmptyList(downloadCompletedList, "完成下载后，视频会出现在这里。");
+    if (!downloadedRecords.length) return renderEmptyList(downloadCompletedList, "暂无下载记录；清理记录不会删除本地视频文件。");
     const fragment = document.createDocumentFragment();
     downloadedRecords.forEach((record) => {
       let dateValue = Number(record.downDate || 0);
@@ -335,6 +373,7 @@
     downloadTabCompleted.setAttribute("aria-selected", String(completed));
     downloadActiveList.hidden = completed;
     downloadCompletedList.hidden = !completed;
+    downloadClearRecordsButton.hidden = !completed;
     if (completed) refreshDownloadedRecords();
     else renderActiveDownloadTasks();
   }
@@ -875,6 +914,7 @@
   document.getElementById("download-panel-close").addEventListener("click", () => setDownloadPanelOpen(false));
   downloadTabActive.addEventListener("click", () => selectDownloadPanelTab("active"));
   downloadTabCompleted.addEventListener("click", () => selectDownloadPanelTab("completed"));
+  downloadClearRecordsButton.addEventListener("click", clearDownloadedRecords);
   seriesToggleAll.addEventListener("click", () => {
     const checkboxes = [...seriesList.querySelectorAll('input[type="checkbox"]')];
     const select = checkboxes.some((checkbox) => !checkbox.checked);
