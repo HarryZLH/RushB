@@ -972,7 +972,15 @@
   startButton.addEventListener("click", startBatch);
   input.addEventListener("input", updateCount);
   input.addEventListener("keydown", (event) => {
-    if (event.ctrlKey && event.key === "Enter") startBatch();
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "a") {
+      event.preventDefault();
+      input.select();
+      return;
+    }
+    if (event.key === "Enter" && !event.shiftKey && !event.isComposing && event.keyCode !== 229) {
+      event.preventDefault();
+      startBatch();
+    }
   });
   document.getElementById("minimize-window").addEventListener("click", () => windowControls.minimize());
   document.getElementById("maximize-window").addEventListener("click", () => {
