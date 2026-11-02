@@ -9,12 +9,10 @@
   const input = document.getElementById("batch-links");
   const countLabel = document.getElementById("link-count");
   const statusLabel = document.getElementById("batch-status");
-  const pathLabel = document.getElementById("save-path");
   const startButton = document.getElementById("start-download");
-  const openFolderButton = document.getElementById("open-folder");
-  const chooseFolderButton = document.getElementById("choose-folder");
   const downloadStatusButton = document.getElementById("download-status-button");
   const downloadPanel = document.getElementById("download-panel");
+  const downloadPanelOpenFolderButton = document.getElementById("download-panel-open-folder");
   const downloadPanelSummary = document.getElementById("download-panel-summary");
   const downloadActiveList = document.getElementById("download-active-list");
   const downloadCompletedList = document.getElementById("download-completed-list");
@@ -359,8 +357,6 @@
   }
 
   function updatePathLabel() {
-    pathLabel.textContent = savePath;
-    pathLabel.title = savePath;
     const settingsPath = document.getElementById("settings-save-path");
     settingsPath.textContent = savePath;
     settingsPath.title = savePath;
@@ -845,10 +841,9 @@
   function updateCount() {
     const count = readLinks().length;
     countLabel.textContent = `${count} 个链接`;
-    startButton.textContent = count ? `一键下载 · ${count}` : "一键下载";
   }
 
-  chooseFolderButton.addEventListener("click", async () => {
+  async function chooseSavePath() {
     const result = await remote.dialog.showOpenDialog(windowControls, {
       title: "选择保存位置",
       defaultPath: savePath,
@@ -861,9 +856,9 @@
       const downloadVm = downloadViewModel();
       if (downloadVm) downloadVm.downDirectory = savePath;
     }
-  });
+  }
 
-  document.getElementById("settings-choose-folder").addEventListener("click", () => chooseFolderButton.click());
+  document.getElementById("settings-choose-folder").addEventListener("click", chooseSavePath);
   document.getElementById("settings-button").addEventListener("click", showSettings);
   document.getElementById("back-to-home").addEventListener("click", showHome);
   aboutButton.addEventListener("click", openAboutDialog);
@@ -925,7 +920,7 @@
     radio.addEventListener("change", () => setLoginMethod(radio.value));
   });
 
-  openFolderButton.addEventListener("click", () => remote.shell.openPath(savePath));
+  downloadPanelOpenFolderButton.addEventListener("click", () => remote.shell.openPath(savePath));
   startButton.addEventListener("click", startBatch);
   input.addEventListener("input", updateCount);
   input.addEventListener("keydown", (event) => {
@@ -949,7 +944,6 @@
       shell.classList.add("is-ready");
       refreshAccountStatus();
       input.focus();
-      showStatus("粘贴链接后，一次下载全部视频。", "normal");
     } catch (error) {
       shell.classList.add("is-ready");
       showStatus(error?.message || "界面初始化失败。", "error");
