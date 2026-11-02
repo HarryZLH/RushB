@@ -23,6 +23,10 @@
   const downloadTabActive = document.getElementById("download-tab-active");
   const downloadTabCompleted = document.getElementById("download-tab-completed");
   const settingsView = document.getElementById("settings-view");
+  const aboutButton = document.getElementById("about-button");
+  const aboutDialog = document.getElementById("about-dialog");
+  const aboutCloseButton = document.getElementById("about-close");
+  const aboutAcknowledgeButton = document.getElementById("about-acknowledge");
   const returnToLiteButton = document.getElementById("return-to-rushb");
   const accountStatus = document.getElementById("account-status");
   const accountIdentity = document.getElementById("account-identity");
@@ -417,6 +421,18 @@
   function showHome() {
     settingsView.hidden = true;
     document.querySelector(".workbench").hidden = false;
+  }
+
+  function openAboutDialog() {
+    aboutDialog.hidden = false;
+    aboutButton.setAttribute("aria-expanded", "true");
+    aboutCloseButton.focus();
+  }
+
+  function closeAboutDialog() {
+    aboutDialog.hidden = true;
+    aboutButton.setAttribute("aria-expanded", "false");
+    aboutButton.focus();
   }
 
   function stopBrowserImport(message = "") {
@@ -850,6 +866,12 @@
   document.getElementById("settings-choose-folder").addEventListener("click", () => chooseFolderButton.click());
   document.getElementById("settings-button").addEventListener("click", showSettings);
   document.getElementById("back-to-home").addEventListener("click", showHome);
+  aboutButton.addEventListener("click", openAboutDialog);
+  aboutCloseButton.addEventListener("click", closeAboutDialog);
+  aboutAcknowledgeButton.addEventListener("click", closeAboutDialog);
+  aboutDialog.addEventListener("click", (event) => {
+    if (event.target === aboutDialog) closeAboutDialog();
+  });
   document.getElementById("open-manual-login").addEventListener("click", openManualLogin);
   returnToLiteButton.addEventListener("click", returnFromManualLogin);
   document.getElementById("open-extension-folder").addEventListener("click", () => remote.shell.openPath(extensionPath));
@@ -879,6 +901,23 @@
     if (event.target === seriesPicker) closeSeriesPicker({ pages: [] });
   });
   document.addEventListener("keydown", (event) => {
+    if (!aboutDialog.hidden) {
+      if (event.key === "Escape") {
+        closeAboutDialog();
+      } else if (event.key === "Tab") {
+        const focusable = [...aboutDialog.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')];
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && (document.activeElement === first || !aboutDialog.contains(document.activeElement))) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && (document.activeElement === last || !aboutDialog.contains(document.activeElement))) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
+      return;
+    }
     if (!seriesPicker.hidden && event.key === "Escape") closeSeriesPicker({ pages: [] });
     else if (downloadPanelOpen && event.key === "Escape") setDownloadPanelOpen(false);
   });
