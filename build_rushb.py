@@ -163,6 +163,10 @@ INDEX_HTML = r'''<!doctype html>
       <div class="download-tabs" role="tablist" aria-label="下载任务分类">
         <button id="download-tab-active" class="download-tab is-selected" type="button" role="tab" aria-selected="true" aria-controls="download-active-list">正在进行 <span id="download-active-count">0</span></button>
         <button id="download-tab-completed" class="download-tab" type="button" role="tab" aria-selected="false" aria-controls="download-completed-list">已下载 <span id="download-completed-count">0</span></button>
+        <button id="download-clear-records" class="download-clear-records" type="button" aria-label="清理已下载记录" title="清理已下载记录，不删除本地视频文件" hidden>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 6.2h11l-.7 9.1a1.4 1.4 0 0 1-1.4 1.3H6.6a1.4 1.4 0 0 1-1.4-1.3l-.7-9.1Z"/><path d="M3 4.5h14M7.3 4.5l.6-1.4h4.2l.6 1.4M8 8.3v5.4m4-5.4v5.4"/></svg>
+          <span>清理</span>
+        </button>
       </div>
       <div id="download-active-list" class="download-list" role="tabpanel" aria-labelledby="download-tab-active"></div>
       <div id="download-completed-list" class="download-list" role="tabpanel" aria-labelledby="download-tab-completed" hidden></div>
@@ -323,7 +327,7 @@ RushB 是一个面向 B 站视频的简洁批量下载桌面界面。默认使�
 1. 双击 `启动RushB.bat`。RushB 与 Bilidown 共用登录状态和设置；切换前先从 RushB 托盘菜单选择“退出”，并关闭 Bilidown，避免旧进程接管启动请求。
 2. 每行粘贴一个 B 站 BV 号、av 号或视频页链接。普通多 P 视频默认下载全部分 P；合集 / 系列会先弹出集数选择窗口，默认只勾选当前集，可多选或全选。带 `?p=` 的链接默认定位到指定集。
 3. 点击“一键下载”，所选任务会交给内置 aria2 和 ffmpeg 处理；弹窗中的“跳过此链接”可略过当前系列链接。
-4. 点击标题栏的小圆图标，可查看下载中、等待中、暂停任务的进度和速度、切换已下载记录，并在面板顶部打开保存位置；每条已下载记录右侧的文件夹图标可单独打开视频目录。
+4. 点击标题栏的小圆图标，可查看下载中、等待中、暂停任务的进度和速度、切换已下载记录、清理下载记录，并在面板顶部打开保存位置；清理记录不会删除本地视频文件。
 5. 右上角“设置”可查看账号状态、设置保存目录与最高可用画质 / 音质，并选择浏览器导入或 B 站扫码登录。
 6. 在“设置 → 软件声明”中查看项目来源、内容使用规范、登录数据处理方式和免责声明。
 
