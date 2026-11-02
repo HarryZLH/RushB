@@ -52,29 +52,14 @@ INDEX_HTML = r'''<!doctype html>
       </div>
     </header>
     <main class="workbench">
-      <p class="eyebrow">B 站视频下载器</p>
-      <h1>批量粘贴链接</h1>
-      <p class="intro">一行一个视频链接，点击一次开始下载。</p>
       <section class="input-card">
-        <textarea id="batch-links" spellcheck="false" placeholder="粘贴 B 站视频链接，每行一个&#10;&#10;支持 BV 号、av 号和视频页链接"></textarea>
+        <textarea id="batch-links" spellcheck="false" placeholder="粘贴 B 站视频链接，每行一个"></textarea>
         <div class="input-meta">
-          <span>普通多 P 默认全选；合集 / 系列先选集数；?p= 会默认选中指定集</span>
           <span id="link-count">0 个链接</span>
         </div>
       </section>
-      <div class="save-row">
-        <span class="save-label">保存到</span>
-        <span id="save-path"></span>
-        <button id="choose-folder" class="text-button">更改</button>
-      </div>
-      <div class="quality-note">
-        <span class="check-mark">&#10003;</span>
-        <span>自动选择当前账号可用的最高画质与最高音质</span>
-      </div>
-      <p class="account-note">登录状态与下载设置可在设置中管理</p>
       <button id="start-download">一键下载</button>
       <div id="batch-status" role="status" aria-live="polite"></div>
-      <div class="footer"><button id="open-folder">打开保存位置</button></div>
     </main>
     <main id="settings-view" class="settings-view" hidden>
       <button id="back-to-home" class="text-button back-button">&#8592; 返回下载器</button>
@@ -112,7 +97,7 @@ INDEX_HTML = r'''<!doctype html>
         </section>
       </section>
       <section class="settings-card download-settings">
-        <div class="account-heading"><span>下载参数</span><span class="settings-value">最高可用画质 / 音质</span></div>
+        <div class="account-heading"><span>下载设置</span><span class="settings-value">最高可用画质 / 音质</span></div>
         <div class="save-row settings-save-row">
           <span class="save-label">保存到</span>
           <span id="settings-save-path"></span>
@@ -167,7 +152,13 @@ INDEX_HTML = r'''<!doctype html>
     <section id="download-panel" class="download-panel" role="dialog" aria-modal="false" aria-labelledby="download-panel-title" hidden>
       <header class="download-panel-header">
         <div><h2 id="download-panel-title">下载任务</h2><p id="download-panel-summary">正在读取任务…</p></div>
-        <button id="download-panel-close" class="download-panel-close" type="button" aria-label="关闭下载任务面板">&#215;</button>
+        <div class="download-panel-header-actions">
+          <button id="download-panel-open-folder" class="download-panel-folder" type="button" title="打开保存位置">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.7 5.4a1.4 1.4 0 0 1 1.4-1.4h4l1.7 1.8h6.1a1.4 1.4 0 0 1 1.4 1.4v7.4A1.4 1.4 0 0 1 15.9 16H4.1a1.4 1.4 0 0 1-1.4-1.4V5.4Z"/><path d="M2.9 7.1h13.9"/></svg>
+            <span>打开保存位置</span>
+          </button>
+          <button id="download-panel-close" class="download-panel-close" type="button" aria-label="关闭下载任务面板">&#215;</button>
+        </div>
       </header>
       <div class="download-tabs" role="tablist" aria-label="下载任务分类">
         <button id="download-tab-active" class="download-tab is-selected" type="button" role="tab" aria-selected="true" aria-controls="download-active-list">正在进行 <span id="download-active-count">0</span></button>
@@ -332,8 +323,9 @@ RushB 是一个面向 B 站视频的简洁批量下载桌面界面。默认使�
 1. 双击 `启动RushB.bat`。RushB 与 Bilidown 共用登录状态和设置；切换前先从 RushB 托盘菜单选择“退出”，并关闭 Bilidown，避免旧进程接管启动请求。
 2. 每行粘贴一个 B 站 BV 号、av 号或视频页链接。普通多 P 视频默认下载全部分 P；合集 / 系列会先弹出集数选择窗口，默认只勾选当前集，可多选或全选。带 `?p=` 的链接默认定位到指定集。
 3. 点击“一键下载”，所选任务会交给内置 aria2 和 ffmpeg 处理；弹窗中的“跳过此链接”可略过当前系列链接。
-4. 点击标题栏的小圆图标，可查看下载中、等待中、暂停任务的进度和速度，也可切换到“已下载”查看完成记录；每条已下载记录右侧的文件夹图标可打开视频所在目录。右上角“设置”可查看账号状态、设置保存目录，并选择浏览器导入或 B 站扫码登录。
-5. 在“设置 → 软件声明”中查看项目来源、内容使用规范、登录数据处理方式和免责声明。
+4. 点击标题栏的小圆图标，可查看下载中、等待中、暂停任务的进度和速度、切换已下载记录，并在面板顶部打开保存位置；每条已下载记录右侧的文件夹图标可单独打开视频目录。
+5. 右上角“设置”可查看账号状态、设置保存目录与最高可用画质 / 音质，并选择浏览器导入或 B 站扫码登录。
+6. 在“设置 → 软件声明”中查看项目来源、内容使用规范、登录数据处理方式和免责声明。
 
 ## 浏览器登录
 
