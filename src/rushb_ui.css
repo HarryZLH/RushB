@@ -62,6 +62,7 @@ body {
 .brand-mark {
   width: 23px;
   height: 23px;
+  flex: 0 0 23px;
   display: grid;
   place-items: center;
   border-radius: 7px;
@@ -69,6 +70,22 @@ body {
   color: #fff;
   font-size: 11px;
   font-weight: 750;
+}
+
+.brand-mark svg {
+  width: 14px;
+  height: 16px;
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 1px 1px rgba(133, 35, 67, .22));
+}
+
+.brand-mark svg path {
+  fill: #fff;
+  stroke: #fff;
+  stroke-width: .35px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .window-actions {
