@@ -1,3 +1,4 @@
+Attempting to perform the InitializeDefaultDrives operation on the 'FileSystem' provider failed.
 * {
   box-sizing: border-box;
 }
@@ -351,7 +352,6 @@ body {
   margin: auto;
   padding: 2px 0 24px;
   overflow: auto;
-  scrollbar-color: #454b56 transparent;
 }
 
 .series-picker[hidden] {
@@ -444,7 +444,6 @@ body {
   min-height: 140px;
   overflow: auto;
   padding: 3px 13px 10px 22px;
-  scrollbar-color: #51494e transparent;
 }
 
 .series-episode {
@@ -1037,7 +1036,6 @@ body {
 .about-dialog-body {
   overflow: auto;
   padding: 16px 22px 22px;
-  scrollbar-color: #51494e transparent;
 }
 
 .about-lead {
@@ -1421,8 +1419,6 @@ body.account-mode #app {
   min-height: 170px;
   overflow: auto;
   padding: 10px 12px 13px;
-  scrollbar-color: rgba(190, 205, 224, .28) transparent;
-  scrollbar-width: thin;
 }
 
 .download-list-empty {
@@ -1846,8 +1842,6 @@ button:focus-visible,
   padding: 10px 0 24px;
   overflow-x: hidden;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(251, 114, 153, .48) transparent;
 }
 
 .settings-view > * {
@@ -2019,33 +2013,179 @@ button:focus-visible,
   font-size: 10px;
 }
 
-.settings-view::-webkit-scrollbar {
-  width: 14px;
+/* One RushB surface and scrollbar system across every scrollable view. */
+:root {
+  --fluent-scroll-thumb: rgba(251, 114, 153, .52);
+  --fluent-scroll-thumb-hover: rgba(255, 145, 174, .82);
+  --fluent-scroll-thumb-active: #fb7299;
+  --fluent-surface-modal: rgba(24, 20, 24, .97);
 }
 
-.settings-view::-webkit-scrollbar-track {
-  margin: 9px 0;
-  border-radius: 999px;
-  background: rgba(255, 246, 249, .035);
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--fluent-scroll-thumb) transparent;
 }
 
-.settings-view::-webkit-scrollbar-thumb {
-  min-height: 42px;
-  border: 4px solid transparent;
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  margin: 5px 1px;
   border-radius: 999px;
-  background: rgba(251, 114, 153, .48);
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  min-height: 34px;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: var(--fluent-scroll-thumb);
   background-clip: padding-box;
 }
 
-.settings-view::-webkit-scrollbar-thumb:hover {
-  border-width: 3px;
-  background: rgba(255, 145, 174, .78);
+*::-webkit-scrollbar-thumb:hover {
+  border-width: 2px;
+  background: var(--fluent-scroll-thumb-hover);
   background-clip: padding-box;
 }
 
-.settings-view::-webkit-scrollbar-button,
-.settings-view::-webkit-scrollbar-corner {
+*::-webkit-scrollbar-thumb:active {
+  border-width: 2px;
+  background: var(--fluent-scroll-thumb-active);
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-button {
   display: none;
   width: 0;
   height: 0;
 }
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.series-episode-list,
+.download-list,
+.about-dialog-body,
+.settings-view {
+  scrollbar-width: thin;
+  scrollbar-color: var(--fluent-scroll-thumb) transparent;
+}
+
+.series-episode-list::-webkit-scrollbar,
+.download-list::-webkit-scrollbar,
+.about-dialog-body::-webkit-scrollbar,
+.settings-view::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.series-episode-list::-webkit-scrollbar-track,
+.download-list::-webkit-scrollbar-track,
+.about-dialog-body::-webkit-scrollbar-track,
+.settings-view::-webkit-scrollbar-track {
+  margin: 5px 1px;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.series-episode-list::-webkit-scrollbar-thumb,
+.download-list::-webkit-scrollbar-thumb,
+.about-dialog-body::-webkit-scrollbar-thumb,
+.settings-view::-webkit-scrollbar-thumb {
+  min-height: 34px;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: var(--fluent-scroll-thumb);
+  background-clip: padding-box;
+}
+
+.series-episode-list::-webkit-scrollbar-thumb:hover,
+.download-list::-webkit-scrollbar-thumb:hover,
+.about-dialog-body::-webkit-scrollbar-thumb:hover,
+.settings-view::-webkit-scrollbar-thumb:hover {
+  border-width: 2px;
+  background: var(--fluent-scroll-thumb-hover);
+  background-clip: padding-box;
+}
+
+.series-episode-list::-webkit-scrollbar-thumb:active,
+.download-list::-webkit-scrollbar-thumb:active,
+.about-dialog-body::-webkit-scrollbar-thumb:active,
+.settings-view::-webkit-scrollbar-thumb:active {
+  border-width: 2px;
+  background: var(--fluent-scroll-thumb-active);
+  background-clip: padding-box;
+}
+
+.series-episode-list::-webkit-scrollbar-button,
+.download-list::-webkit-scrollbar-button,
+.about-dialog-body::-webkit-scrollbar-button,
+.settings-view::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.series-episode-list::-webkit-scrollbar-corner,
+.download-list::-webkit-scrollbar-corner,
+.about-dialog-body::-webkit-scrollbar-corner,
+.settings-view::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.series-picker,
+.about-overlay {
+  background: rgba(7, 6, 8, .76);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  backdrop-filter: blur(10px) saturate(130%);
+}
+
+.series-dialog,
+.about-dialog,
+.download-panel {
+  border-color: var(--fluent-stroke-strong);
+  border-radius: var(--dialog-radius);
+  background: var(--fluent-surface-modal);
+}
+
+.input-card,
+.settings-card,
+.method-card,
+.shortcut-option,
+.series-episode,
+.about-button,
+.download-row {
+  border-color: var(--fluent-stroke);
+  background: var(--fluent-surface);
+}
+
+.method-card,
+.shortcut-option,
+.series-episode {
+  border-radius: var(--selection-radius);
+}
+
+.download-row {
+  border-radius: var(--row-radius);
+}
+
+.about-close,
+.download-panel-folder,
+.download-panel-close,
+.download-clear-records,
+.download-row-folder,
+.series-secondary {
+  border-radius: var(--control-radius);
+}
+
+#start-download,
+.settings-primary,
+.series-primary,
+.series-secondary {
+  border-radius: var(--control-radius);
+}
+
